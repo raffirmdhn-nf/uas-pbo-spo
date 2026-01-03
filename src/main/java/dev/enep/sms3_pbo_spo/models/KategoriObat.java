@@ -10,12 +10,12 @@ import java.sql.Timestamp;
  *
  * @author raffi
  */
-public class Kategori {
+public class KategoriObat {
     private int id;
     private String nama, deskripsi;
     private Timestamp deleted_at, created_at, updated_at;
     
-    public Kategori() {}
+    public KategoriObat() {}
 
     public int getId() {
         return id;

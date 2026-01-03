@@ -4,7 +4,7 @@
  */
 package dev.enep.sms3_pbo_spo.dao;
 
-import dev.enep.sms3_pbo_spo.models.Kategori;
+import dev.enep.sms3_pbo_spo.models.KategoriObat;
 import dev.enep.sms3_pbo_spo.utils.KoneksiDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +17,9 @@ import java.util.List;
  *
  * @author raffi
  */
-public class KategoriDAO {
+public class KategoriObatDAO {
 
-    public void insert(Kategori k) throws Exception {
+    public void insert(KategoriObat k) throws Exception {
         String sql = "INSERT INTO kategori (nama, deskripsi) VALUES (?, ?)";
 
         try {
@@ -33,17 +33,17 @@ public class KategoriDAO {
         }
     }
 
-    public List<Kategori> findAll() throws Exception {
-        List<Kategori> list = new ArrayList<>();
+    public List<KategoriObat> findAll() throws Exception {
+        List<KategoriObat> list = new ArrayList<>();
         String sql = "SELECT id, nama, deskripsi, created_at, updated_at FROM kategori WHERE deleted_at IS NULL";
-        System.out.println("sql: " + sql);
+
         try {
             Connection c = KoneksiDB.getConnection();
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                Kategori k = new Kategori();
+                KategoriObat k = new KategoriObat();
                 k.setId(rs.getInt("id"));
                 k.setNama(rs.getString("nama"));
                 k.setDeskripsi(rs.getString("deskripsi"));
@@ -59,11 +59,51 @@ public class KategoriDAO {
         return list;
     }
 
+    public KategoriObat findById(int id) throws Exception {
+        KategoriObat kategori = new KategoriObat();
+        String sql = "SELECT id, nama, deskripsi, created_at, updated_at FROM kategori WHERE id = ? AND deleted_at IS NULL";
+
+        try {
+            Connection c = KoneksiDB.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                kategori.setId(rs.getInt("id"));
+                kategori.setNama(rs.getString("nama"));
+                kategori.setDeskripsi(rs.getString("deskripsi"));
+                kategori.setCreated_at(rs.getTimestamp("created_at"));
+                kategori.setUpdated_at(rs.getTimestamp("updated_at"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return kategori;
+    }
+
     public void softDelete(int id) throws Exception {
         String sql = "UPDATE kategori SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?";
         Connection c = KoneksiDB.getConnection();
         PreparedStatement ps = c.prepareStatement(sql);
         ps.setInt(1, id);
         ps.executeUpdate();
+    }
+
+    public void update(KategoriObat k) throws Exception {
+        String sql = "UPDATE kategori SET nama = ?, deskripsi = ? WHERE id = ?";
+
+        try {
+            Connection c = KoneksiDB.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, k.getNama());
+            ps.setString(2, k.getDeskripsi());
+            ps.setInt(3, k.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
