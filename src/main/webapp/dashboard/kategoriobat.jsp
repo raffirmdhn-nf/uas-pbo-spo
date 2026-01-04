@@ -119,6 +119,8 @@
                     <th>ID</th>
                     <th>Nama</th>
                     <th>Deskripsi</th>
+                    <th>Tgl Dibuat</th>
+                    <th>Tgl Dirubah</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -128,6 +130,8 @@
                     <td><%= k.getId()%></td>
                     <td><%= k.getNama()%></td>
                     <td><%= k.getDeskripsi()%></td>
+                    <td><%= k.getFormattedCreatedAt()%></td>
+                    <td><%= k.getFormattedUpdatedAt()%></td>
                     <td>
                         <a href="?pg=dashboard/kategoriobat&aksi=edit&id=<%= k.getId()%>" class="btn btn-warning btn-sm me-1">
                             <i class="bi bi-pencil-square"></i> Edit

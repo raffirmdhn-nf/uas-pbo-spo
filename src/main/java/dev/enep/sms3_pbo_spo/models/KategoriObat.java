@@ -4,18 +4,22 @@
  */
 package dev.enep.sms3_pbo_spo.models;
 
+import dev.enep.sms3_pbo_spo.utils.Formatter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author raffi
  */
 public class KategoriObat {
+
     private int id;
     private String nama, deskripsi;
     private Timestamp deleted_at, created_at, updated_at;
-    
-    public KategoriObat() {}
+
+    public KategoriObat() {
+    }
 
     public int getId() {
         return id;
@@ -65,8 +69,16 @@ public class KategoriObat {
         this.updated_at = updated_at;
     }
 
-    @Override
-    public String toString() {
-        return "Kategori{" + "id=" + id + ", nama=" + nama + ", deskripsi=" + deskripsi + ", deleted_at=" + deleted_at + ", created_at=" + created_at + ", updated_at=" + updated_at + '}';
+    // --- getter formatted ---
+    public String getFormattedCreatedAt() {
+        return Formatter.formatTimestamp(created_at);
+    }
+
+    public String getFormattedUpdatedAt() {
+        return Formatter.formatTimestamp(updated_at);
+    }
+
+    public String getFormattedDeletedAt() {
+        return Formatter.formatTimestamp(deleted_at);
     }
 }

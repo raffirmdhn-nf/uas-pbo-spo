@@ -1,3 +1,4 @@
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Date"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
@@ -5,17 +6,27 @@
 
 <%
     request.setAttribute("pageTitle", "Manajemen Stok Obat | Dashboard");
+    Users user = (Users) session.getAttribute("user-session");
+    if (user == null) {
+        return;
+    }
+
     ObatDAO dao = new ObatDAO();
 
     // Aksi tambah / kurang stok
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         String aksi = request.getParameter("aksi");
         int id = Integer.parseInt(request.getParameter("id"));
+        int stok = Integer.parseInt(request.getParameter("stok"));
+
+        Obat o = new Obat();
+        o.setId(id);
+        o.setStok(stok);
 
         if ("tambah-stok".equals(aksi)) {
-            dao.tambahStok(id);
+            dao.tambahStok(o, user.getId());
         } else if ("kurangi-stok".equals(aksi)) {
-            dao.kurangStok(id);
+            dao.kurangStok(o, user.getId());
         }
 %>
 <script>
@@ -67,18 +78,20 @@
                     <td><%= o.getId()%></td>
                     <td><%= o.getNama()%></td>
                     <td><%= o.getStok()%></td>
-                    <td><%= o.getExpired_date()%></td>
-                    <td><%= o.getUpdated_at()%></td>
+                    <td><%= o.getFormattedExpiredDate()%></td>
+                    <td><%= o.getFormattedUpdatedAt()%></td>
                     <td>
                         <form method="post" style="display:inline">
                             <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <button name="aksi" value="kurangi-stok" class="btn btn-primary btn-sm">
+                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
+                            <button name="aksi" value="kurangi-stok" class="btn btn-warning btn-sm">
                                 -
                             </button>
                         </form>
                         <form method="post" style="display:inline">
                             <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <button name="aksi" value="tambah-stok" class="btn btn-primary btn-sm">
+                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
+                            <button name="aksi" value="tambah-stok" class="btn btn-success btn-sm">
                                 +
                             </button>
                         </form>

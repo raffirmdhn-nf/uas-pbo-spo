@@ -58,6 +58,12 @@
                         <p>Manajemen Obat</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="?pg=dashboard/riwayatstokobat" class="nav-link <%= "dashboard/riwayatstokobat".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-file-earmark-medical"></i>
+                        <p>Riwayat Stok Obat</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

@@ -96,37 +96,76 @@ public class ObatDAO {
         ps.executeUpdate();
     }
 
-    public void update(Obat o) throws Exception {
-        String sql = "UPDATE obat SET nama = ?, stok = ?, expired_date = ?, kategori_id = ? WHERE id = ?";
+    public void update(Obat o, Obat oldO, int userId) throws Exception {
+        try (Connection c = KoneksiDB.getConnection()) {
+            // Update obat
+            String sqlUpdate = "UPDATE obat SET nama = ?, stok = ?, expired_date = ?, kategori_id = ? WHERE id = ?";
+            try (PreparedStatement ps = c.prepareStatement(sqlUpdate)) {
+                ps.setString(1, o.getNama());
+                ps.setInt(2, o.getStok());
+                ps.setDate(3, o.getExpired_date());
+                ps.setInt(4, o.getKategori_id());
+                ps.setInt(5, o.getId());
+                ps.executeUpdate();
+            }
 
-        try {
-            Connection c = KoneksiDB.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
-            ps.setString(1, o.getNama());
-            ps.setInt(2, o.getStok());
-            ps.setDate(3, o.getExpired_date());
-            ps.setInt(4, o.getKategori_id());
-            ps.setInt(5, o.getId());
-            ps.executeUpdate();
+            // Insert log jika stok berubah
+            if (oldO.getStok() != o.getStok()) {
+                String sqlLog = "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement psLog = c.prepareStatement(sqlLog)) {
+                    psLog.setString(1, "Perubahan stok"); // bisa ganti sesuai kebutuhan
+                    psLog.setInt(2, oldO.getStok());
+                    psLog.setInt(3, o.getStok());
+                    psLog.setInt(4, o.getId());
+                    psLog.setInt(5, userId);
+                    psLog.executeUpdate();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void tambahStok(int id) throws Exception {
-        String sql = "UPDATE obat SET stok = stok + 1 WHERE id = ?";
-        Connection c = KoneksiDB.getConnection();
-        PreparedStatement ps = c.prepareStatement(sql);
-        ps.setInt(1, id);
-        ps.executeUpdate();
+    public void tambahStok(Obat o, int userId) throws Exception {
+        try (Connection c = KoneksiDB.getConnection()) {
+            // Update stok
+            try (PreparedStatement ps = c.prepareStatement("UPDATE obat SET stok = stok + 1 WHERE id = ?")) {
+                ps.setInt(1, o.getId());
+                ps.executeUpdate();
+            }
+
+            // Insert log
+            try (PreparedStatement psLog = c.prepareStatement(
+                    "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)")) {
+                psLog.setString(1, "Tambah 1 stok");
+                psLog.setInt(2, o.getStok());
+                psLog.setInt(3, o.getStok() + 1);
+                psLog.setInt(4, o.getId());
+                psLog.setInt(5, userId);
+                psLog.executeUpdate();
+            }
+        }
     }
 
-    public void kurangStok(int id) throws Exception {
-        String sql = "UPDATE obat SET stok = stok - 1 WHERE id = ? AND stok > 0";
-        Connection c = KoneksiDB.getConnection();
-        PreparedStatement ps = c.prepareStatement(sql);
-        ps.setInt(1, id);
-        ps.executeUpdate();
+    public void kurangStok(Obat o, int userId) throws Exception {
+        try (Connection c = KoneksiDB.getConnection()) {
+            // Update stok
+            try (PreparedStatement ps = c.prepareStatement("UPDATE obat SET stok = stok - 1 WHERE id = ?")) {
+                ps.setInt(1, o.getId());
+                ps.executeUpdate();
+            }
+
+            // Insert log
+            try (PreparedStatement psLog = c.prepareStatement(
+                    "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)")) {
+                psLog.setString(1, "Kurangi 1 stok");
+                psLog.setInt(2, o.getStok());
+                psLog.setInt(3, o.getStok() - 1);
+                psLog.setInt(4, o.getId());
+                psLog.setInt(5, userId);
+                psLog.executeUpdate();
+            }
+        }
     }
 
 }

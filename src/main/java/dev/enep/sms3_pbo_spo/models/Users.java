@@ -4,6 +4,7 @@
  */
 package dev.enep.sms3_pbo_spo.models;
 
+import dev.enep.sms3_pbo_spo.utils.Formatter;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -12,11 +13,13 @@ import java.sql.Timestamp;
  * @author raffi
  */
 public class Users implements Serializable {
+
     private int id;
     private String username, password, role;
     private Timestamp deleted_at, created_at, updated_at;
-    
-    public Users() {}
+
+    public Users() {
+    }
 
     public int getId() {
         return id;
@@ -73,9 +76,17 @@ public class Users implements Serializable {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
-    
-    @Override
-    public String toString() {
-        return username;
+
+    // --- formatted getters ---
+    public String getFormattedCreatedAt() {
+        return Formatter.formatTimestamp(created_at);
+    }
+
+    public String getFormattedUpdatedAt() {
+        return Formatter.formatTimestamp(updated_at);
+    }
+
+    public String getFormattedDeletedAt() {
+        return Formatter.formatTimestamp(deleted_at);
     }
 }

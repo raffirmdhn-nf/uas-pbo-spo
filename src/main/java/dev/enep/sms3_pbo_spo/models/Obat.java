@@ -4,14 +4,17 @@
  */
 package dev.enep.sms3_pbo_spo.models;
 
+import dev.enep.sms3_pbo_spo.utils.Formatter;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author raffi
  */
 public class Obat {
+
     private int id, stok, kategori_id;
     private String nama, kategori_nama;
     private Date expired_date;
@@ -76,10 +79,12 @@ public class Obat {
         this.kategori_nama = kategori_nama;
     }
 
-    @Override
-    public String toString() {
-        return "Obat{" + "id=" + id + ", stok=" + stok + ", nama=" + nama + ", expired_date=" + expired_date + ", updated_at=" + updated_at + '}';
+    // --- getter formatted ---
+    public String getFormattedExpiredDate() {
+        return Formatter.formatDate(expired_date);
     }
 
-    
+    public String getFormattedUpdatedAt() {
+        return Formatter.formatTimestamp(updated_at);
+    }
 }

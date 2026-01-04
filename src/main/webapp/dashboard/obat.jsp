@@ -1,3 +1,4 @@
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.KategoriObatDAO"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.KategoriObat"%>
 <%@page import="java.util.List"%>
@@ -7,8 +8,24 @@
 
 <%
     request.setAttribute("pageTitle", "Manajemen Obat | Dashboard");
+    Users user = (Users) session.getAttribute("user-session");
+    if (user == null) {
+        return;
+    }
+
     ObatDAO dao = new ObatDAO();
     KategoriObatDAO ktgObatDao = new KategoriObatDAO();
+    List<KategoriObat> listKtgObat = ktgObatDao.findAll();
+    List<Obat> list = dao.findAll();
+    Obat obatEdit = null;
+
+    String aksi = request.getParameter("aksi"); // dari query param
+    String editIdParam = request.getParameter("id");
+    int editId = (editIdParam != null && !editIdParam.isEmpty()) ? Integer.parseInt(editIdParam) : 0;
+
+    if ("edit".equals(aksi) && editId > 0) {
+        obatEdit = dao.findById(editId);
+    }
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         if ("tambah".equals(request.getParameter("aksi"))) {
@@ -47,7 +64,7 @@
         Date expiredDate = Date.valueOf(expiredStr);
         o.setExpired_date(expiredDate);
         o.setKategori_id(Integer.parseInt(request.getParameter("kategori_id")));
-        dao.update(o); // Pastikan method update di DAO sudah ada
+        dao.update(o, obatEdit, user.getId()); // Pastikan method update di DAO sudah ada
 %>
 <script>
     alert("Data berhasil diupdate!");
@@ -56,19 +73,6 @@
 <%
         }
     }
-
-    List<KategoriObat> listKtgObat = ktgObatDao.findAll();
-    List<Obat> list = dao.findAll();
-    Obat obatEdit = null;
-
-    String aksi = request.getParameter("aksi"); // dari query param
-    String editIdParam = request.getParameter("id");
-    int editId = (editIdParam != null && !editIdParam.isEmpty()) ? Integer.parseInt(editIdParam) : 0;
-
-    if ("edit".equals(aksi) && editId > 0) {
-        obatEdit = dao.findById(editId);
-    }
-
 %>
 
 <div class="app-content-header">
@@ -163,6 +167,7 @@
                     <th>Nama</th>
                     <th>Stok</th>
                     <th>Expired</th>
+                    <th>Terakhir Update</th>
                     <th>Kategori</th>
                     <th>Aksi</th>
                 </tr>
@@ -173,7 +178,8 @@
                     <td><%= o.getId()%></td>
                     <td><%= o.getNama()%></td>
                     <td><%= o.getStok()%></td>
-                    <td><%= o.getExpired_date()%></td>
+                    <td><%= o.getFormattedExpiredDate()%></td>
+                    <td><%= o.getFormattedUpdatedAt()%></td>
                     <td><%= o.getKategori_nama()%></td>
                     <td>
                         <a href="?pg=dashboard/obat&aksi=edit&id=<%= o.getId()%>" class="btn btn-warning btn-sm me-1">
