@@ -1,3 +1,43 @@
+<%@page import="dev.enep.sms3_pbo_spo.dao.AutentikasiDao"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%
+    if ("GET".equalsIgnoreCase(request.getMethod()) && session.getAttribute("user-session") != null) {
+%>
+<script>
+    window.location.href = "?pg=dashboard/obat";
+</script>
+<%
+        return;
+    }
+
+    String result = "";
+    String postMsg = "";
+    String insUsn = "";
+    String insPw = "";
+
+    if ("POST".equalsIgnoreCase(request.getMethod())) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        Users user = new Users();
+        user.setUsername(username);
+        user.setPassword(password); // idealnya sudah di-hash di service
+
+        AutentikasiDao dao = new AutentikasiDao();
+        result = dao.register(user);
+        System.out.println(result);
+
+        if ("REGISTER_SUCCESS".equals(result)) {
+            postMsg = "Login berhasil, anda akan diarahkan ke halaman login...";
+        } else if ("USERNAME_EXISTS".equals(result)) {
+            postMsg = "Username sudah digunakan";
+        } else {
+            postMsg = "Registrasi gagal";
+        }
+        insUsn = username;
+        insPw = password;
+    }
+%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -22,17 +62,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="#!">
+                            <form method="POST">
+                                <% if (!postMsg.isEmpty()) {%>
+                                <div class="alert <%= "REGISTER_SUCCESS".equals(result) ? "alert-success" : "alert-danger"%>" role="alert">
+                                    <%= postMsg%>
+                                </div>
+
+                                <% if ("REGISTER_SUCCESS".equals(result)) { %>
+                                <script>
+                                    setTimeout(function () {
+                                        window.location.href = "?pg=login";
+                                    }, 2000);
+                                </script>
+                                <% } %>
+                                <% }%>
+
                                 <div class="row gy-3 gy-md-4 overflow-hidden">
                                     <div class="col-12">
-                                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                        <label for="username" class="form-label">username <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="username" id="username" value="<%= insUsn%>" required>
                                     </div>
                                     <div class="col-12">
                                         <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                        <input type="password" class="form-control" name="password" id="password" value="" required>
+                                        <input type="password" class="form-control" name="password" id="password" value="<%= insPw%>" required>
                                     </div>
-                                   
+
                                     <div class="col-12">
                                         <div class="d-grid">
                                             <button class="btn btn-lg btn-primary" type="submit">Register</button>

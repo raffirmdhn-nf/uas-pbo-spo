@@ -16,10 +16,15 @@
 
     String realPath = application.getRealPath("/" + content);
 
-        if (realPath == null || !new java.io.File(realPath).exists()) {
-            content = "dashboard/404.jsp";
-        }
+    if (realPath == null || !new java.io.File(realPath).exists()) {
+        content = "dashboard/404.jsp";
+    }
 
     request.setAttribute("contentPage", content);
+    
+    Boolean stop = (Boolean) request.getAttribute("STOP_RENDER");
+    if (stop != null && stop) {
+        return;
+    }
 %>
 <jsp:include page="<%= filePg%>" />

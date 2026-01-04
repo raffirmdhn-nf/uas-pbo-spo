@@ -7,10 +7,6 @@
         <p class="text-muted">
           Halaman yang kamu akses tidak tersedia atau sudah dipindahkan.
         </p>
-
-        <a href="?pg=dashboard/home" class="btn btn-primary mt-3">
-          <i class="bi bi-house"></i> Kembali ke Dashboard
-        </a>
       </div>
     </div>
   </div>

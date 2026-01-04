@@ -1,3 +1,11 @@
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%
+    Users user = (Users) session.getAttribute("user-session");
+    if (user == null) {
+        return;
+    }
+%>
+
 <!--begin::Sidebar-->
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <!--begin::Sidebar Brand-->
@@ -6,13 +14,13 @@
         <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
             <img
-                src="./assets/img/AdminLTELogo.png"
+                src="dashboard/assets/img/AdminLTELogo.png"
                 alt="AdminLTE Logo"
                 class="brand-image opacity-75 shadow"
                 />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-light">AdminLTE</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -28,7 +36,7 @@
                 role="menu"
                 data-accordion="false"
                 >
-                <li class="nav-header">Admin</li>
+                <li class="nav-header"><%= user.getRole()%></li>
 
                 <li class="nav-item">
                     <a href="?pg=dashboard/kategoriobat" class="nav-link">

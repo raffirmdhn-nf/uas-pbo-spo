@@ -1,3 +1,16 @@
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    if (session.getAttribute("user-session") == null) {
+%>
+<script>
+    window.location.href = "?pg=login"
+</script>
+<%
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
