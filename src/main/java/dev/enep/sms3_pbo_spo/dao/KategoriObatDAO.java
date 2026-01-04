@@ -22,9 +22,7 @@ public class KategoriObatDAO {
     public void insert(KategoriObat k) throws Exception {
         String sql = "INSERT INTO kategori (nama, deskripsi) VALUES (?, ?)";
 
-        try {
-            Connection c = KoneksiDB.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, k.getNama());
             ps.setString(2, k.getDeskripsi());
             ps.executeUpdate();
@@ -37,11 +35,7 @@ public class KategoriObatDAO {
         List<KategoriObat> list = new ArrayList<>();
         String sql = "SELECT id, nama, deskripsi, created_at, updated_at FROM kategori WHERE deleted_at IS NULL";
 
-        try {
-            Connection c = KoneksiDB.getConnection();
-            Statement st = c.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
+        try (Connection c = KoneksiDB.getConnection(); Statement st = c.createStatement(); ResultSet rs = st.executeQuery(sql);) {
             while (rs.next()) {
                 KategoriObat k = new KategoriObat();
                 k.setId(rs.getInt("id"));
@@ -63,9 +57,7 @@ public class KategoriObatDAO {
         KategoriObat kategori = new KategoriObat();
         String sql = "SELECT id, nama, deskripsi, created_at, updated_at FROM kategori WHERE id = ? AND deleted_at IS NULL";
 
-        try {
-            Connection c = KoneksiDB.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
@@ -86,18 +78,18 @@ public class KategoriObatDAO {
 
     public void softDelete(int id) throws Exception {
         String sql = "UPDATE kategori SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?";
-        Connection c = KoneksiDB.getConnection();
-        PreparedStatement ps = c.prepareStatement(sql);
-        ps.setInt(1, id);
-        ps.executeUpdate();
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(KategoriObat k) throws Exception {
         String sql = "UPDATE kategori SET nama = ?, deskripsi = ? WHERE id = ?";
 
-        try {
-            Connection c = KoneksiDB.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setString(1, k.getNama());
             ps.setString(2, k.getDeskripsi());
             ps.setInt(3, k.getId());

@@ -56,8 +56,6 @@
     if ("edit".equals(aksi) && editId > 0) {
         kategoriEdit = dao.findById(editId);
     }
-
-
 %>
 
 <div class="app-content-header">
