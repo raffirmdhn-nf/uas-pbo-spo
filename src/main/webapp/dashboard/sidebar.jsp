@@ -6,6 +6,7 @@
     }
 
     String currentPg = request.getParameter("pg"); // ambil query param ?pg
+    Boolean isAdmin = "admin".equalsIgnoreCase(user.getRole());
 %>
 
 <!--begin::Sidebar-->
@@ -40,30 +41,36 @@
                 >
                 <li class="nav-header" style="text-transform: uppercase"><%= user.getRole()%></li>
 
+                <% if (isAdmin) {%>
                 <li class="nav-item">
                     <a href="?pg=dashboard/kategoriobat" class="nav-link <%= "dashboard/kategoriobat".equals(currentPg) ? "active" : ""%>">
                         <i class="nav-icon bi bi-tags"></i>
                         <p>Kategori Obat</p>
                     </a>
                 </li>
+                <% }%>
                 <li class="nav-item">
                     <a href="?pg=dashboard/obat" class="nav-link <%= "dashboard/obat".equals(currentPg) ? "active" : ""%>">
                         <i class="nav-icon bi bi-box-seam"></i>
                         <p>Obat</p>
                     </a>
                 </li>
+                <% if (isAdmin) {%>
                 <li class="nav-item">
                     <a href="?pg=dashboard/manajemenobat" class="nav-link <%= "dashboard/manajemenobat".equals(currentPg) ? "active" : ""%>">
                         <i class="nav-icon bi bi-gear"></i>
                         <p>Manajemen Obat</p>
                     </a>
                 </li>
+                <% }%>
+                <% if (isAdmin) {%>
                 <li class="nav-item">
                     <a href="?pg=dashboard/riwayatstokobat" class="nav-link <%= "dashboard/riwayatstokobat".equals(currentPg) ? "active" : ""%>">
                         <i class="nav-icon bi bi-file-earmark-medical"></i>
                         <p>Riwayat Stok Obat</p>
                     </a>
                 </li>
+                <% }%>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

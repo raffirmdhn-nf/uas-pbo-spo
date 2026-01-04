@@ -13,6 +13,8 @@
         return;
     }
 
+    Boolean isAdmin = "admin".equalsIgnoreCase(user.getRole());
+
     ObatDAO dao = new ObatDAO();
     KategoriObatDAO ktgObatDao = new KategoriObatDAO();
     List<KategoriObat> listKtgObat = ktgObatDao.findAll();
@@ -99,6 +101,7 @@
         <h2 class="mb-4"></h2>
 
         <!-- Form tambah / edit -->
+        <% if (isAdmin) { %>
         <form method="post" class="mb-4 row g-2">
             <% if (obatEdit != null) {%>
             <input type="hidden" name="id" value="<%= obatEdit.getId()%>">
@@ -157,7 +160,7 @@
             </div>
             <% } %>
         </form>
-
+        <% } %>
 
         <!-- Table list obat -->
         <table class="table table-striped table-bordered">
@@ -182,6 +185,7 @@
                     <td><%= o.getFormattedUpdatedAt()%></td>
                     <td><%= o.getKategori_nama()%></td>
                     <td>
+                        <% if (isAdmin) {%>
                         <a href="?pg=dashboard/obat&aksi=edit&id=<%= o.getId()%>" class="btn btn-warning btn-sm me-1">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
@@ -191,6 +195,9 @@
                                 <i class="bi bi-trash"></i> Hapus
                             </button>
                         </form>
+                        <% } else { %>
+                        #
+                        <% } %>
                     </td>
                 </tr>
                 <% }%>
