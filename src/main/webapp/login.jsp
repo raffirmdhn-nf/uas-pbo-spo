@@ -23,11 +23,20 @@
         Users user = dao.login(username, password);
         if (user != null) {
             session.setAttribute("user-session", user); // simpan session
+
+            if ("admin".equalsIgnoreCase(user.getRole())) {
+%>
+<script>
+    window.location.href = "?pg=dashboard";
+</script>
+<%
+} else {
 %>
 <script>
     window.location.href = "?pg=dashboard/obat";
 </script>
 <%
+            }
             return;
         }
         insUsn = username;

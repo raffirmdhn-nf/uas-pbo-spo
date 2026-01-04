@@ -10,7 +10,12 @@
 
         if (pg.startsWith("dashboard")) {
             filePg = "dashboard/template.jsp";
-            content = pg + ".jsp";
+
+            if (pg.contains("/")) {
+                content = pg + ".jsp";
+            } else {
+                content = "dashboard/dashboard.jsp";
+            }
         }
     }
 
@@ -21,7 +26,7 @@
     }
 
     request.setAttribute("contentPage", content);
-    
+
     Boolean stop = (Boolean) request.getAttribute("STOP_RENDER");
     if (stop != null && stop) {
         return;

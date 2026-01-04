@@ -43,6 +43,14 @@
 
                 <% if (isAdmin) {%>
                 <li class="nav-item">
+                    <a href="?pg=dashboard" class="nav-link <%= "dashboard".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-easel2"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <% } %>
+                <% if (isAdmin) {%>
+                <li class="nav-item">
                     <a href="?pg=dashboard/kategoriobat" class="nav-link <%= "dashboard/kategoriobat".equals(currentPg) ? "active" : ""%>">
                         <i class="nav-icon bi bi-tags"></i>
                         <p>Kategori Obat</p>

@@ -66,8 +66,8 @@
                 
                     <!-- Menu Footer-->
                     <li class="d-flex justify-content-between align-items-center p-2">
-                        <form method="POST">
-                            <button class="btn btn-default btn-flat" name="aksi" value="logout">Sign out</button>
+                        <form method="POST" class="w-100">
+                            <button class="btn btn-default btn-flat w-100" name="aksi" value="logout">Sign out</button>
                         </form>
                     </li>
                 </ul>
