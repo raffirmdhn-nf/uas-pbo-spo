@@ -66,9 +66,6 @@
                 
                     <!-- Menu Footer-->
                     <li class="d-flex justify-content-between align-items-center p-2">
-                        <div>
-                            <%= user.getUsername()%> - <%= user.getRole()%>
-                        </div>
                         <form method="POST">
                             <button class="btn btn-default btn-flat" name="aksi" value="logout">Sign out</button>
                         </form>

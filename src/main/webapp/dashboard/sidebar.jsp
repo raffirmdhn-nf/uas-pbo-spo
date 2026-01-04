@@ -4,6 +4,8 @@
     if (user == null) {
         return;
     }
+
+    String currentPg = request.getParameter("pg"); // ambil query param ?pg
 %>
 
 <!--begin::Sidebar-->
@@ -36,23 +38,23 @@
                 role="menu"
                 data-accordion="false"
                 >
-                <li class="nav-header"><%= user.getRole()%></li>
+                <li class="nav-header" style="text-transform: uppercase"><%= user.getRole()%></li>
 
                 <li class="nav-item">
-                    <a href="?pg=dashboard/kategoriobat" class="nav-link">
-                        <i class="nav-icon bi bi-palette"></i>
+                    <a href="?pg=dashboard/kategoriobat" class="nav-link <%= "dashboard/kategoriobat".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-tags"></i>
                         <p>Kategori Obat</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="?pg=dashboard/obat" class="nav-link">
-                        <i class="nav-icon bi bi-palette"></i>
+                    <a href="?pg=dashboard/obat" class="nav-link <%= "dashboard/obat".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-box-seam"></i>
                         <p>Obat</p>
                     </a>
                 </li>
-                 <li class="nav-item">
-                    <a href="?pg=dashboard/manajemenobat" class="nav-link">
-                        <i class="nav-icon bi bi-palette"></i>
+                <li class="nav-item">
+                    <a href="?pg=dashboard/manajemenobat" class="nav-link <%= "dashboard/manajemenobat".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-gear"></i>
                         <p>Manajemen Obat</p>
                     </a>
                 </li>
