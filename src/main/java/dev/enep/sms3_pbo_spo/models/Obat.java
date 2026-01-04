@@ -5,6 +5,7 @@
 package dev.enep.sms3_pbo_spo.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Obat {
     private int id, stok;
     private String nama;
     private Date expired_date;
+    private Timestamp updated_at;
 
     public Obat() {
     }
@@ -50,8 +52,18 @@ public class Obat {
         this.expired_date = expired_date;
     }
 
+    public Timestamp getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
+    }
+
     @Override
     public String toString() {
-        return "KategoriObat{" + "id=" + id + ", stok=" + stok + ", nama=" + nama + ", expired_date=" + expired_date + '}';
+        return "Obat{" + "id=" + id + ", stok=" + stok + ", nama=" + nama + ", expired_date=" + expired_date + ", updated_at=" + updated_at + '}';
     }
+
+    
 }

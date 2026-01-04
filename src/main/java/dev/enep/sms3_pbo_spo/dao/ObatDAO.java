@@ -36,7 +36,7 @@ public class ObatDAO {
 
     public List<Obat> findAll() throws Exception {
         List<Obat> list = new ArrayList<>();
-        String sql = "SELECT id, nama, stok, expired_date, created_at, updated_at FROM obat WHERE deleted_at IS NULL";
+        String sql = "SELECT id, nama, stok, expired_date, created_at, updated_at FROM obat WHERE deleted_at IS NULL ORDER BY id";
 
         try {
             Connection c = KoneksiDB.getConnection();
@@ -49,6 +49,7 @@ public class ObatDAO {
                 o.setNama(rs.getString("nama"));
                 o.setStok(rs.getInt("stok"));
                 o.setExpired_date(rs.getDate("expired_date"));
+                o.setUpdated_at(rs.getTimestamp("updated_at"));
                 
                 list.add(o);
             }
@@ -106,6 +107,21 @@ public class ObatDAO {
             e.printStackTrace();
         }
     }
-    
+  
+    public void tambahStok(int id) throws Exception {
+        String sql = "UPDATE obat SET stok = stok + 1 WHERE id = ?";
+        Connection c = KoneksiDB.getConnection();
+        PreparedStatement ps = c.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    }
+
+    public void kurangStok(int id) throws Exception {
+        String sql = "UPDATE obat SET stok = stok - 1 WHERE id = ? AND stok > 0";
+        Connection c = KoneksiDB.getConnection();
+        PreparedStatement ps = c.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    }
     
 }
