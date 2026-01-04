@@ -1,673 +1,648 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="author" content="Untree.co">
-        <link rel="shortcut icon" href="favicon.png">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Farmacare</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
 
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
+        <!-- Favicons -->
+        <link href="landing/assets/css/style.css" rel="stylesheet">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Mono&display=swap" rel="stylesheet">
+        <link href="landing/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="landing/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="landing/assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="landing/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="landing/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="landing/css/bootstrap.min.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-        <link rel="stylesheet" href="landing/css/owl.carousel.min.css" />
-        <link rel="stylesheet" href="landing/css/owl.theme.default.min.css" />
-        <link rel="stylesheet" href="landing/css/jquery.fancybox.min.css" />
-        <link rel="stylesheet" href="landing/fonts/icomoon/style.css" />
-        <link rel="stylesheet" href="landing/fonts/flaticon/font/flaticon.css" />
-        <link rel="stylesheet" href="landing/css/aos.css" />
-        <link rel="stylesheet" href="landing/css/style.css" />
-        <link rel="stylesheet" href="landing/css/spo.css" />
-
-
-        <title>Minimal Free HTML Template by Untree.co</title>
+        <!-- =======================================================
+        * Template Name: OnePage
+        * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+        * Updated: Aug 07 2024 with Bootstrap v5.3.3
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
     </head>
 
-    <body data-spy="scroll" data-target=".site-navbar-target" data-offset="100">
+    <body class="index-page">
 
-        <div class="lines-wrap">
-            <div class="lines-inner">
-                <div class="lines"></div>
-            </div>
-        </div>
-        <!-- END lines -->
+        <header id="header" class="header d-flex align-items-center sticky-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-        <div class="site-mobile-menu site-navbar-target">
-            <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close">
-                    <span class="icofont-close js-menu-toggle"></span>
-                </div>
-            </div>
-            <div class="site-mobile-menu-body"></div>
-        </div>
+                <a href="index.jsp" class="logo d-flex align-items-center me-auto" style="text-decoration: none;">
+    <h1 class="sitename">FarmaCare</h1>
+</a>
 
-        <nav class="site-nav dark mb-5 site-navbar-target">
-            <div class="container">
-                <div class="site-navigation">
-                    <a href="index.html" class="logo m-0">Minimal<span class="text-primary">.</span></a>
-
-                    <ul class="js-clone-nav d-none d-lg-block site-menu float-right site-nav-wrap">
-
-                        <li><a href="#home-section" class="nav-link active">Home</a></li>
-                        <li><a href="#services-section" class="nav-link">Services</a></li>
-                        <li><a href="#testimonial-section" class="nav-link">Testimonials</a></li>
-                        <li><a href="#blogpost-section" class="nav-link">Blog Posts</a></li>
-                        <li><a href="#contact-section" class="nav-link">Contact us</a></li>
-                        <li><a href="?pg=login" class="nav-link d-flex align-items-center g-2" style="gap: 3px;">Login <i class="bi bi-box-arrow-in-right"></i></a></li>
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="#hero" class="active">Halaman<br></a></li>
+                        <li><a href="#about">Tentang kami</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#team">Tim</a></li>
+                        <li><a href="#contact">Kontak</a></li>
                     </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
 
-                    <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
-                        <span></span>
-                    </a>
-
-                </div>
-            </div>
-        </nav>
-
-        <div class="untree_co-section pb-0" id="home-section">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-md-7">
-                        <h1 class="heading gsap-reveal-hero mb-3"><strong>Minimal<span class="text-primary">.</span> Portfolio</strong></h1>
-                        <h2 class="subheading gsap-reveal-hero mb-4">
-                            A minimal, clean, and AJAX driven free portfolio template created by the fine folks at <strong>Untree.co</strong>. Read our <a href="https://untree.co/license" target="_blank">template license</a> here.
-                        </h2>
-                        <p class="gsap-reveal-hero"><a href="https://untree.co/" target="_blank" class="btn btn-outline-black">More free templates here</a></p>    
-                    </div>
-                </div>
+                <a class="btn-getstarted" href="?pg=login">Login</a>
 
             </div>
-        </div>
+        </header>
 
+        <main class="main">
 
-        <div class="untree_co-section untree_co-section-4 pb-0"  id="portfolio-section">
-            <div class="container">
+            <!-- Hero Section -->
+            <section id="hero" class="hero section">
 
+                <img src="landing/assets/img/putih.jpg" alt="" data-aos="fade-in" class="">
 
-                <div class="relative"><div class="loader-portfolio-wrap"><div class="loader-portfolio"></div></div> </div>
-                <div id="portfolio-single-holder"></div>
-
-                <div class="portfolio-wrapper">
-
-                    <div id="posts" class="row">
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-1.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Obsessed Book</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_1.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
+                <div class="container">
+                    <div class="row justify-content-center" data-aos="zoom-out">
+                        <div class="col-xl-7 col-lg-9 text-center">
+                            <h1>Farma Care</h1>
+                            <p>Solusi Obat Terpercaya, Kesehatan Anda Utama.</p>
                         </div>
+                    </div>
+                    <div class="text-center" data-aos="zoom-out" data-aos-delay="100">
+                        <a href="?pg=login" class="btn-get-started">Cek selengkapnya</a>
+                    </div>
 
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-2.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Book Binding</h3>
-                                        <p>illustration, application</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_2.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
+                    <div class="row gy-4 mt-5">
+                        <div class="col-md-6 col-lg-4" data-aos="zoom-out" data-aos-delay="100">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-capsule"></i></div>
+                                <h4 class="title"><a href="">Farmasi Terpercaya</a></h4>
+                                <p class="description">Menyediakan obat-obatan asli dengan kualitas terjamin dan penyimpanan yang sesuai standar medis.</p>
+                            </div>
+                        </div><!--End Icon Box -->
 
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Fresh Fruits</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_3.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
+                        <div class="col-md-6 col-lg-4" data-aos="zoom-out" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi-heart-pulse"></i></div>
+                                <h4 class="title"><a href="">Skrining resep</a></h4>
+                                <p class="description">Pemeriksaan menyeluruh terhadap resep Anda untuk mencegah interaksi obat yang berbahaya dan memastikan dosis yang diberikan sudah tepat.</p>
+                            </div>
+                        </div><!--End Icon Box -->
 
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Powerful Speaker</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_4.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Wireless Headset</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_5.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-1.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Black & White Cubic</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_6.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-2.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Nike Shoe</h3>
-                                        <p>illustration, application</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_7.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Old Typewriter</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_8.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Walking Man</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_9.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Progress Journal</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_10.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>The Dog</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_11.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Beautiful Woman</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_12.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                            <a href="portfolio-single-3.html" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="3">
-                                <div class="overlay">
-                                    <span class="wrap-icon icon-link2"></span>
-                                    <div class="portfolio-item-content">
-                                        <h3>Book Binding</h3>
-                                        <p>web, branding</p>
-                                    </div>
-                                </div>
-                                <img src="landing/images/img_2.jpg" class="lazyload  img-fluid" alt="Images" />
-                            </a>
-                        </div>
-
+                        <div class="col-md-6 col-lg-4" data-aos="zoom-out" data-aos-delay="300">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi-person-badge"></i></div>
+                                <h4 class="title"><a href="">Stok obat</a></h4>
+                                <p class="description">Seluruh produk kami berasal dari distributor resmi dengan sertifikasi BPOM untuk menjamin keamanan konsumsi Anda.</p>
+                            </div>
+                        </div><!--End Icon Box -->
 
                     </div>
                 </div>
 
+            </section><!-- /Hero Section -->
 
-                <!-- </div>
-                </div> -->
-            </div>
-        </div>
+            <!-- About Section -->
+            <section id="about" class="about section">
 
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Tentang kami<br></h2>
+                    <p>Sistem HealthCare Management dirancang khusus sebagai solusi digital untuk membantu apoteker mengelola siklus hidup produk farmasi secara presisi. Kami fokus pada penyederhanaan manajemen inventaris, mulai dari pencatatan stok masuk, pemantauan masa kedaluwarsa, hingga otomatisasi laporan ketersediaan obat secara real-time.</p>
+                </div><!-- End Section Title -->
 
-        <div class="untree_co-section pb-0" id="services-section">
-            <div class="container">
-                <div class="row mb-4">
-                    <div class="col-lg-7 text-center mx-auto">
-                        <h2 class="section-heading gsap-reveal-hero mb-0"><strong>Services</strong></h2>
-                        <p class="gsap-reveal-hero">The Big Oxmox advised her not to do so, because there were thousands of bad Commas.</p>
-                        <div class="wave gsap-reveal-hero" >
-                            <svg>
-                            <path d="M10,10 L50,100 L90,50" stroke="#0389ff"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+                <div class="container">
 
-                <div class="row">
+                    <div class="row gy-4">
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-7.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">Marketing</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-6.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">Photography</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-1.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">Web Design</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-8.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">App Development</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-4.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">Search Ranking</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4">
-                        <div class="service text-center">
-                            <div class="gsap-reveal-hero mb-3">
-                                <span class="icon-service"><img src="landing/images/svg/service-icon-5.svg" alt="Image" class="img-fluid"></span>
-                            </div>
-                            <h3 class="gsap-reveal-hero">Branding</h3>
-                            <p class="gsap-reveal-hero">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="untree_co-section testimonial-wrap" id="testimonial-section"
-             <div class="container">
-                <div class="row mb-5">
-                    <div class="col-lg-7 text-center mx-auto">
-                        <h2 class="section-heading gsap-reveal-hero mb-0"><strong>Testimonials</strong></h2>
-                        <p class="gsap-reveal-hero">What clients say...</p>
-
-                        <div class="wave gsap-reveal-hero" >
-                            <svg>
-                            <path d="M10,10 L50,100 L90,50" stroke="#0389ff"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div data-aos="fade-left" data-aos-delay="200">
-
-
-
-                    <div class="owl-carousel owl-3-slider">
-                        <div class="item">
-                            <div class="testimonial-v1">
-                                <img src="landing/images/person_1.jpg" alt="Image" class="img-fluid">
-                                <div class="mb-4">
-                                    <h3>James Smith</h3>
-                                    <span class="caption">CEO &amp; Co-Founder</span>
-                                </div>
-                                <blockquote>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- END .item -->
-
-                        <div class="item">
-                            <div class="testimonial-v1">
-                                <img src="landing/images/person_2.jpg" alt="Image" class="img-fluid">
-                                <div class="mb-4">
-                                    <h3>Jenny Wilson</h3>
-                                    <span class="caption">CEO &amp; Co-Founder</span>
-                                </div>
-                                <blockquote>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- END .item -->
-
-                        <div class="item">
-                            <div class="testimonial-v1">
-                                <img src="landing/images/person_3.jpg" alt="Image" class="img-fluid">
-                                <div class="mb-4">
-                                    <h3>Dan Anderson</h3>
-                                    <span class="caption">CEO &amp; Co-Founder</span>
-                                </div>
-                                <blockquote>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- END .item -->
-
-                        <div class="item">
-                            <div class="testimonial-v1">
-                                <img src="landing/images/person_1.jpg" alt="Image" class="img-fluid">
-                                <div class="mb-4">
-                                    <h3>James Smith</h3>
-                                    <span class="caption">CEO &amp; Co-Founder</span>
-                                </div>
-                                <blockquote>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- END .item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="untree_co-section" id="blogpost-section">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-lg-7 text-center mx-auto">
-                        <h2 class="section-heading gsap-reveal-hero mb-0"><strong>Blog Posts</strong></h2>
-                        <p class="gsap-reveal-hero">News &amp; Updates</p>
-
-                        <div class="wave gsap-reveal-hero" >
-                            <svg>
-                            <path d="M10,10 L50,100 L90,50" stroke="#0389ff" stroke-width="2"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-                        <div class="post-entry">
-                            <a href="#" class="thumb"><img src="landing/images/gal_1.jpg" alt="image" class="img-fluid"></a>
-                            <h3><a href="#">Separated they live in</a></h3>
-                            <div class="post-meta">
-                                Aug 4, 2020 by <a href="#">Admin</a> in <a href="#">Web Design</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                        <div class="post-entry">
-                            <a href="#" class="thumb"><img src="landing/images/gal_2.jpg" alt="image" class="img-fluid"></a>
-                            <h3><a href="#">Separated they live in</a></h3>
-                            <div class="post-meta">
-                                Aug 4, 2020 by <a href="#">Admin</a> in <a href="#">Web Design</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                        <div class="post-entry">
-                            <a href="#" class="thumb"><img src="landing/images/gal_3.jpg" alt="image" class="img-fluid"></a>
-                            <h3><a href="#">Separated they live in</a></h3>
-                            <div class="post-meta">
-                                Aug 4, 2020 by <a href="#">Admin</a> in <a href="#">Web Design</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                        <div class="post-entry">
-                            <a href="#" class="thumb"><img src="landing/images/gal_4.jpg" alt="image" class="img-fluid"></a>
-                            <h3><a href="#">Separated they live in</a></h3>
-                            <div class="post-meta">
-                                Aug 4, 2020 by <a href="#">Admin</a> in <a href="#">Web Design</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="untree_co-section" id="contact-section">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-lg-7 text-center mx-auto">
-                        <h2 class="section-heading gsap-reveal-hero mb-0"><strong>Contact</strong></h2>
-                        <p class="gsap-reveal-hero">Available for work. Get in touch</p>
-
-                        <div class="wave gsap-reveal-hero" >
-                            <svg>
-                            <path d="M10,10 L50,100 L90,50" stroke="#0389ff"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Firstname">
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Lastname">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 form-group">
-                                    <input type="email" class="form-control" placeholder="Email address">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 form-group">
-                                    <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Write your message..."></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 form-group">
-                                    <input type="submit" class="btn btn-black" value="Send Message">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-6">
-                        <div id="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320.12856481718734!2d-73.97263090448001!3d40.78263296621774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2588ff21eaaab%3A0xd0128d5d89a30429!2sMargarita%20Anthoine!5e0!3m2!1sen!2sph!4v1597149027268!5m2!1sen!2sph"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="site-footer">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="widget">
-                            <h3>Home</h3>
-                            <ul class="list-unstyled float-left links">
-                                <li><a href="#">Untree.co</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
+                        <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                            <ul>
+                                <li><i class="bi bi-check2-circle"></i> <span>Stok Terpantau Akurat: Cek ketersediaan obat secara real-time tanpa perlu hitung manual.</span></li>
+                                <li><i class="bi bi-check2-circle"></i> <span>Kendali Masa Expired: Pantau tanggal kedaluwarsa lebih mudah untuk jamin keamanan produk.</span></li>
+                                <li><i class="bi bi-check2-circle"></i> <span>Laporan Otomatis: Rekapitulasi data stok jadi lebih cepat dan minim kesalahan.</span></li>
                             </ul>
-                        </div> <!-- /.widget -->
-                    </div> <!-- /.col-lg-3 -->
+                        </div>
 
-                    <div class="col-lg-3">
-                        <div class="widget">
-                            <h3>Projects</h3>
-                            <ul class="list-unstyled float-left links">
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
-                                <li><a href="#">Untree.co</a></li>
-                                <li><a href="#">Free Templates</a></li>
-                                <li><a href="#">WordPress Themes</a></li>
-                            </ul>
-                        </div> <!-- /.widget -->
-                    </div> <!-- /.col-lg-3 -->
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                            <p>Bagaimana cara pre order obat? Anda bisa mendaftar melalui tombol disini</p>
+                            <a href="?pg=login" class="read-more"><span>Daftar</span><i class="bi bi-arrow-right"></i></a>
+                        </div>
 
-                    <div class="col-lg-3">
-                        <div class="widget">
-                            <h3>Services</h3>
-                            <ul class="list-unstyled float-left links">
-                                <li><a href="#">Untree.co</a></li>
-                                <li><a href="#">jQuery</a></li>
-                                <li><a href="#">Bootstrap</a></li>
-                                <li><a href="#">Freebies</a></li>
-                            </ul>
-                        </div> <!-- /.widget -->
-                    </div> <!-- /.col-lg-3 -->
+                    </div>
 
+                </div>
 
-                    <div class="col-lg-3">
-                        <div class="widget">
-                            <h3>Contact</h3>
-                            <address>43 Raymouth Rd. Baltemoer, London 3910</address>
-                            <ul class="list-unstyled links mb-4">
-                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                                <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
-                            </ul>
+            </section><!-- /About Section -->
 
-                            <h3>Connect</h3>
-                            <ul class="list-unstyled social">
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                                <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                                <li><a href="#"><span class="icon-dribbble"></span></a></li>
-                            </ul>
+            <!-- Stats Section -->
+            <section id="stats" class="stats section light-background">
 
-                        </div> <!-- /.widget -->
-                    </div> <!-- /.col-lg-3 -->
+                <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                </div> <!-- /.row -->
+                    <div class="row gy-4">
 
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stats-item text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Penjualan Obat</p>
+                            </div>
+                        </div><!-- End Stats Item -->
 
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stats-item text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Keamanan produk</p>
+                            </div>
+                        </div><!-- End Stats Item -->
 
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stats-item text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Jam Penjualan</p>
+                            </div>
+                        </div><!-- End Stats Item -->
 
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stats-item text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Jenis obat</p>
+                            </div>
+                        </div><!-- End Stats Item -->
 
-                <div class="row mt-5">
-                    <div class="col-12 text-center">
-                        <!-- 
-                          **==========
-                          NOTE: 
-                          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+                    </div>
+
+                </div>
+
+            </section><!-- /Stats Section -->
+
+            <!-- Clients Section -->
+            <section id="clients" class="clients section light-background">
+
+                <div class="container" data-aos="fade-up">
+
+                    <div class="row gy-4">
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-1.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-2.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-3.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-4.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-5.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                        <div class="col-xl-2 col-md-3 col-6 client-logo">
+                            <img src="landing/assets/img/clients/clients-6.png" class="img-fluid" alt="">
+                        </div><!-- End Client Item -->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Clients Section -->
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="testimonials section">
+
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Testimoni</h2>
+                    <p>Beberapa rating hasil testimoni dari pembeli</p>
+                </div><!-- End Section Title -->
+
+                <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+                        <script type="application/json" class="swiper-config">
+                            {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                            "delay": 5000
+                            },
+                            "slidesPerView": "auto",
+                            "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                            },
+                            "breakpoints": {
+                            "320": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 40
+                            },
+                            "1200": {
+                            "slidesPerView": 3,
+                            "spaceBetween": 20
+                            }
+                            }
+                            }
+                        </script>
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item" "="">
+                                    <p>
+                                        <i class=" bi bi-quote quote-icon-left"></i>
+                                        <span>Sangat puas belanja di sini. Awalnya ragu beli obat online, tapi ternyata produknya 100% asli dan ada segel resminya. Benar-benar Farmasi Terpercaya</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <img src="landing/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                    <h3>Saul Goodman</h3>
+                                    <h4>Ceo &amp; Founder</h4>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Obat yang dikirim masa kedaluwarsanya masih lama. Penyimpanannya juga rapi sehingga kemasan tidak rusak saat sampai. Rekomendasi banget buat yang cari obat aman.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <img src="landing/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                    <h3>Sara Wilsson</h3>
+                                    <h4>Designer</h4>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Luar biasa cepat! Butuh obat darurat jam 9 malam, langsung diproses dan sampai kurang dari satu jam. Layanan Pengiriman Cepat yang sangat membantu.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <img src="landing/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                                    <h3>Jena Karlis</h3>
+                                    <h4>Store Owner</h4>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Cari obat resep yang susah didapat di apotek lain, ternyata di sini stoknya lengkap. Proses tebus resepnya juga tidak ribet</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <img src="landing/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                                    <h3>Matt Brandon</h3>
+                                    <h4>Freelancer</h4>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Terima kasih atas penjelasannya mengenai cara minum obat yang benar. Sangat informatif bagi saya yang sering lupa aturan minum obat.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <img src="landing/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                                    <h3>John Larson</h3>
+                                    <h4>Entrepreneur</h4>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                </div>
+
+            </section><!-- /Testimonials Section -->
+
+            <!-- Services Section -->
             
-                          **==========
-                        -->
-                        <p class="mb-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>  Distributed By <a href="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
-                        </p>
-                    </div>
-                </div>
-            </div> <!-- /.container -->
-        </div> <!-- /.site-footer -->
 
-        <div id="overlayer"></div>
-        <div class="loader">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="portfolio section">
+
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Portfolio</h2>
+                    <p>Foto berbagai obat yang kami sediakan</p>
+                </div><!-- End Section Title -->
+
+                <div class="container">
+
+                    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+                 
+                        </ul><!-- End Portfolio Filters -->
+
+                        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                                <img src="landing/assets/img/masonry-portfolio/obat1.jpg" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Obat 1</h4>
+                                    <a href="?pg=login">Selengkapnya</a>
+                                </div>
+                            </div><!-- End Portfolio Item -->
+
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                                <img src="landing/assets/img/masonry-portfolio/obat2.jpg" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Paracetamol</h4>
+                                    <p>Obat</p>
+                                </div>
+                            </div><!-- End Portfolio Item -->
+
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                                <img src="landing/assets/img/masonry-portfolio/obat4.jpg" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>Flutrops</h4>
+                                    <p>Obat</p>
+                                </div>
+                            </div><!-- End Portfolio Item -->
+                            
+                            <LI><div class="text-center mt-4 mb-5">
+    <a href="?pg=login" class="btn btn-primary px-5 rounded shadow">Cek selengkapnya</a>
+</div>
+                                </LI>
+
+                            
+
+                        </div><!-- End Portfolio Container -->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Portfolio Section -->
+
+            <!-- Team Section -->
+            <section id="team" class="team section light-background">
+
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Team</h2>
+                    <p>Team pengembang website ini</p>
+                </div><!-- End Section Title -->
+
+                <div class="container">
+
+                    <div class="row gy-4">
+
+                        <div class="row justify-content-center gy-4">
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-member">
+            <div class="member-img">
+                <img src="landing/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="member-info">
+                <h4>Raffi Ramadhan Tajudin</h4>
+                <span>0110224204</span>
             </div>
         </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-member">
+            <div class="member-img">
+                <img src="landing/assets/img/team/team-2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="member-info">
+                <h4>Rumaisha</h4>
+                <span>0110224087</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-member">
+            <div class="member-img">
+                <img src="landing/assets/img/team/team-3.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="member-info">
+                <h4>Haikal Pilar Yudhistira</h4>
+                <span>0110224141</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <button id="scrollTopBtn" class="btn btn-primary scroll-top">
-            <i class="bi bi-arrow-up"></i>
-        </button>
+<div class="row justify-content-center gy-4 mt-2">
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+        <div class="team-member">
+            <div class="member-img">
+                <img src="landing/assets/img/team/team-4.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="member-info">
+                <h4>Noval Putra Siregar</h4>
+                <span>0110224135</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="500">
+        <div class="team-member">
+            <div class="member-img">
+                <img src="landing/assets/img/team/team-4.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="member-info">
+                <h4>Akmal Maulana</h4>
+                <span>0110224037</span>
+            </div>
+        </div>
+    </div>
+</div>
 
+                    </div>
 
-        <script src="landing/js/jquery-3.4.1.min.js"></script>
-        <script src="landing/js/popper.min.js"></script>
-        <script src="landing/js/bootstrap.min.js"></script>
-        <script src="landing/js/owl.carousel.min.js"></script>
-        <script src="landing/js/jquery.animateNumber.min.js"></script>
-        <script src="landing/js/jquery.waypoints.min.js"></script>
-        <script src="landing/js/jquery.fancybox.min.js"></script>
-        <script src="landing/js/aos.js"></script>
-        <script src="landing/js/wave-animate.js"></script>
-        <script src="landing/js/circle-progress.js"></script>
-        <script src="landing/js/imagesloaded.pkgd.js"></script>
-        <script src="landing/js/isotope.pkgd.min.js"></script>
-        <script src="landing/js/jquery.easing.1.3.js"></script>
-        <script src="landing/js/TweenMax.min.js"></script>
-        <script src="landing/js/ScrollMagic.min.js"></script>
-        <script src="landing/js/scrollmagic.animation.gsap.min.js"></script>
+                </div>
 
-        <script src="landing/js/custom.js"></script>
-        <script src="landing/js/spo.js"></script>
+            </section><!-- /Team Section -->
+
+            
+
+            <!-- Faq Section -->
+            <section id="faq" class="faq section light-background">
+
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>PERTANYAAN YANG SERING DIAJUKAN</h2>
+                    <p>Temukan informasi penting mengenai panduan penggunaan obat dan layanan kesehatan kami di bawah ini.</p>
+                </div><!-- End Section Title -->
+
+                
+                <div class="container">
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+                            <div class="faq-container">
+
+                                <div class="faq-item faq-active">
+                                    <h3>Bagaimana aturan minum obat yang benar?</h3>
+                                    <div class="faq-content">
+                                        <p>Ikuti petunjuk pada label kemasan. Perhatikan apakah obat harus diminum sebelum atau sesudah makan untuk hasil maksimal.</div>
+                                    <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div><!-- End Faq item-->
+
+                                <div class="faq-item">
+                                    <h3>Apa yang harus dilakukan jika saya lupa minum satu dosis?</h3>
+                                    <div class="faq-content">
+                                        <p>Segera minum jika ingat. Namun, jika sudah hampir waktu dosis berikutnya, abaikan dosis yang terlewat dan jangan menggandakan dosis.</div>
+                                    <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div><!-- End Faq item-->
+
+                                <div class="faq-item">
+                                    <h3>Apakah ada efek samping yang harus saya waspadai?</h3>
+                                    <div class="faq-content">
+                                        <p>Efek samping umum meliputi kantuk atau mual. Jika muncul reaksi alergi parah (sesak napas/gatal), segera hubungi dokter.</div>
+                                    <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div><!-- End Faq item-->
+
+                            </div>
+
+                        </div><!-- End Faq Column-->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Faq Section -->
+
+                                
+
+                            </div>
+
+                        </div><!-- End Faq Column-->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Faq Section -->
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact section">
+
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Kontak</h2>
+                    <p>Pelayanan kami hingga 24 jam kami sangat berkenan jika ada berkebutuhan mungkin dapat kami hubungi</p>
+                </div><!-- End Section Title -->
+
+                <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <iframe style="border:0; width: 100%; height: 270px;"  src="https://www.google.com/maps/d/embed?mid=1soqvLoYGu575omHL8EY4mBYQrp6-Rtk&ehbc=2E312F" width="640" height="480" width="640" height="480" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div><!-- End Google Maps -->
+
+                    <div class="row gy-4">
+
+                        <div class="col-lg-4">
+                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                                <div>
+                                    <h3>Alamat</h3>
+                                    <p>Jalan Raya Lenteng Agung No. 20-21, Jakarta Selatan</p>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                                <i class="bi bi-telephone flex-shrink-0"></i>
+                                <div>
+                                    <h3>Hubungi kami</h3>
+                                    <p>+62 887-2311-4456</p>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                                <i class="bi bi-envelope flex-shrink-0"></i>
+                                <div>
+                                    <h3>Email kami</h3>
+                                    <p>healthcare@gmail.com</p>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                        </div>
+
+                        <div class="col-lg-8">
+                            <form action="forms/?pg=login" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                                <div class="row gy-4">
+
+                                    <div class="col-md-6">
+                                        <input type="text" name="name" class="form-control" placeholder="Nama" required="">
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="subject" placeholder="Alamat" required="">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
+                                    </div>
+
+                                    <div class="col-md-12 text-center">
+                                        <div class="loading">Loading</div>
+                                        <div class="error-message"></div>
+                                        <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                        <button type="submit">Send Message</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div><!-- End Contact Form -->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Contact Section -->
+
+        </main>
+
+        <footer id="footer" class="footer light-background">
+
+            
+
+            <div class="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">Healhcare</strong> <span>All Rights Reserved</span></p>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you've purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+                    
+                </div>
+            </div>
+
+        </footer>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader"></div>
+
+        <!-- Vendor JS Files -->
+        <script src="landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="landing/assets/vendor/php-email-form/validate.js"></script>
+        <script src="landing/assets/vendor/aos/aos.js"></script>
+        <script src="landing/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+        <script src="landing/assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="landing/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+        <script src="landing/assets/js/main.js"></script>
+
+        <!-- Main JS File -->
+        <script src="assets/js/main.js"></script>
 
     </body>
 
