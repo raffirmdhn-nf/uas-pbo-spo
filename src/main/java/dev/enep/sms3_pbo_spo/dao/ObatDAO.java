@@ -36,7 +36,7 @@ public class ObatDAO {
 
     public List<Obat> findAll() throws Exception {
         List<Obat> list = new ArrayList<>();
-        String sql = "SELECT id, nama, stok, expired_date, created_at, updated_at FROM obat WHERE deleted_at IS NULL ORDER BY id";
+        String sql = "SELECT obat.id, obat.nama, obat.stok, obat.expired_date, obat.created_at, obat.updated_at, obat.kategori_id, kategori.nama as kategori_nama FROM obat LEFT JOIN kategori ON obat.kategori_id = kategori.id WHERE obat.deleted_at IS NULL ORDER BY id";
 
         try {
             Connection c = KoneksiDB.getConnection();
@@ -50,7 +50,9 @@ public class ObatDAO {
                 o.setStok(rs.getInt("stok"));
                 o.setExpired_date(rs.getDate("expired_date"));
                 o.setUpdated_at(rs.getTimestamp("updated_at"));
-                
+                o.setKategori_id(rs.getInt("kategori_id"));
+                o.setKategori_nama(rs.getString("kategori_nama"));
+
                 list.add(o);
             }
         } catch (Exception e) {
@@ -62,7 +64,7 @@ public class ObatDAO {
 
     public Obat findById(int id) throws Exception {
         Obat obat = new Obat();
-        String sql = "SELECT id, nama, stok, expired_date, created_at, updated_at FROM obat WHERE id = ? AND deleted_at IS NULL";
+        String sql = "SELECT obat.id, obat.nama, obat.stok, obat.expired_date, obat.created_at, obat.updated_at, obat.kategori_id, kategori.nama as kategori_nama FROM obat LEFT JOIN kategori ON obat.kategori_id = kategori.id WHERE obat.id = ? AND obat.deleted_at IS NULL";
 
         try {
             Connection c = KoneksiDB.getConnection();
@@ -76,6 +78,8 @@ public class ObatDAO {
                 obat.setNama(rs.getString("nama"));
                 obat.setStok(rs.getInt("stok"));
                 obat.setExpired_date(rs.getDate("expired_date"));
+                obat.setKategori_id(rs.getInt("kategori_id"));
+                obat.setKategori_nama(rs.getString("kategori_nama"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +97,7 @@ public class ObatDAO {
     }
 
     public void update(Obat o) throws Exception {
-        String sql = "UPDATE obat SET nama = ?, stok = ?, expired_date = ? WHERE id = ?";
+        String sql = "UPDATE obat SET nama = ?, stok = ?, expired_date = ?, kategori_id = ? WHERE id = ?";
 
         try {
             Connection c = KoneksiDB.getConnection();
@@ -101,13 +105,14 @@ public class ObatDAO {
             ps.setString(1, o.getNama());
             ps.setInt(2, o.getStok());
             ps.setDate(3, o.getExpired_date());
-            ps.setInt(4, o.getId());
+            ps.setInt(4, o.getKategori_id());
+            ps.setInt(5, o.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-  
+
     public void tambahStok(int id) throws Exception {
         String sql = "UPDATE obat SET stok = stok + 1 WHERE id = ?";
         Connection c = KoneksiDB.getConnection();
@@ -123,5 +128,5 @@ public class ObatDAO {
         ps.setInt(1, id);
         ps.executeUpdate();
     }
-    
+
 }

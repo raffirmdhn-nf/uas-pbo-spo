@@ -1,3 +1,5 @@
+<%@page import="dev.enep.sms3_pbo_spo.dao.KategoriObatDAO"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.KategoriObat"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Date"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
@@ -6,6 +8,7 @@
 <%
     request.setAttribute("pageTitle", "Manajemen Obat | Dashboard");
     ObatDAO dao = new ObatDAO();
+    KategoriObatDAO ktgObatDao = new KategoriObatDAO();
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         if ("tambah".equals(request.getParameter("aksi"))) {
@@ -13,8 +16,8 @@
             o.setNama(request.getParameter("nama"));
             o.setStok(Integer.parseInt(request.getParameter("stok")));
             String expiredStr = request.getParameter("expired_date");
-                Date expiredDate = Date.valueOf(expiredStr);
-                o.setExpired_date(expiredDate);
+            Date expiredDate = Date.valueOf(expiredStr);
+            o.setExpired_date(expiredDate);
             dao.insert(o);
 %>
 <script>
@@ -39,10 +42,11 @@
         o.setId(Integer.parseInt(request.getParameter("id")));
         o.setNama(request.getParameter("nama"));
         o.setStok(Integer.parseInt(request.getParameter("stok")));
-        System.out.println("Stop: "+ o.getStok());
+        System.out.println("Stop: " + o.getStok());
         String expiredStr = request.getParameter("expired_date");
-            Date expiredDate = Date.valueOf(expiredStr);
-            o.setExpired_date(expiredDate);
+        Date expiredDate = Date.valueOf(expiredStr);
+        o.setExpired_date(expiredDate);
+        o.setKategori_id(Integer.parseInt(request.getParameter("kategori_id")));
         dao.update(o); // Pastikan method update di DAO sudah ada
 %>
 <script>
@@ -53,6 +57,7 @@
         }
     }
 
+    List<KategoriObat> listKtgObat = ktgObatDao.findAll();
     List<Obat> list = dao.findAll();
     Obat obatEdit = null;
 
@@ -96,13 +101,29 @@
             <div class="col-md-3">
                 <input type="text" name="nama" class="form-control" placeholder="Nama obat" value="<%= obatEdit.getNama()%>" required>
             </div>
-            <div class="col-md-3">
-                <input type="number" name="stok" class="form-control" placeholder="Stok" value="<%= obatEdit.getStok()%>" required>
+            <div class="col-md-2">
+                <input type="number" name="stok" class="form-control" placeholder="Stok"
+                       <%= (obatEdit != null) ? "value=\"" + obatEdit.getStok() + "\"" : ""%> required>
             </div>
-            <div class="col-md-3">
-                <input type="date" name="expired_date" class="form-control" placeholder="Expired date" value="<%= obatEdit.getExpired_date()%>" required>
+
+            <div class="col-md-2">
+                <input type="date" name="expired_date" class="form-control" placeholder="Expired date" 
+                       <%= (obatEdit != null) ? "value=\"" + obatEdit.getExpired_date() + "\"" : ""%> required>
             </div>
+
             <div class="col-md-3">
+                <select class="form-select" name="kategori_id" required>
+                    <option value="">Kategori Obat</option>
+                    <% for (KategoriObat ktgObat : listKtgObat) {%>
+                    <option 
+                        value="<%= ktgObat.getId()%>" 
+                        <%= (obatEdit != null && ktgObat.getId() == obatEdit.getKategori_id()) ? "selected" : ""%>>
+                        <%= ktgObat.getNama()%>
+                    </option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <button type="submit" name="aksi" value="edit" class="btn btn-primary w-100">
                     <i class="bi bi-plus-circle"></i> Update
                 </button>
@@ -111,13 +132,21 @@
             <div class="col-md-3">
                 <input type="text" name="nama" class="form-control" placeholder="Nama obat" required>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <input type="number" name="stok" class="form-control" placeholder="Stok" required>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <input type="date" name="expired_date" class="form-control" placeholder="Expired date" required>
             </div>
             <div class="col-md-3">
+                <select class="form-select" name="kategori_id" required>
+                    <option value="">Kategori Obat</option>
+                    <% for (KategoriObat ktgObat : listKtgObat) {%>
+                    <option value="<%= ktgObat.getId()%>"><%= ktgObat.getNama()%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <button type="submit" name="aksi" value="tambah" class="btn btn-success w-100">
                     <i class="bi bi-plus-circle"></i> Tambah
                 </button>
@@ -134,6 +163,7 @@
                     <th>Nama</th>
                     <th>Stok</th>
                     <th>Expired</th>
+                    <th>Kategori</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -144,6 +174,7 @@
                     <td><%= o.getNama()%></td>
                     <td><%= o.getStok()%></td>
                     <td><%= o.getExpired_date()%></td>
+                    <td><%= o.getKategori_nama()%></td>
                     <td>
                         <a href="?pg=dashboard/obat&aksi=edit&id=<%= o.getId()%>" class="btn btn-warning btn-sm me-1">
                             <i class="bi bi-pencil-square"></i> Edit

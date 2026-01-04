@@ -22,7 +22,7 @@
                 />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE</span>
+            <span class="brand-text fw-light">Farma Care</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
