@@ -6,46 +6,6 @@
     request.setAttribute("pageTitle", "Manajemen Kategori | Dashboard");
     KategoriObatDAO dao = new KategoriObatDAO();
 
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        if ("tambah".equals(request.getParameter("aksi"))) {
-            KategoriObat k = new KategoriObat();
-            k.setNama(request.getParameter("nama"));
-            k.setDeskripsi(request.getParameter("deskripsi"));
-            dao.insert(k);
-%>
-<script>
-    alert("Data berhasil ditambah!");
-    window.location.href = "?pg=dashboard/kategoriobat";
-</script>
-<%
-    }
-
-    if ("hapus".equals(request.getParameter("aksi"))) {
-        dao.softDelete(Integer.parseInt(request.getParameter("id")));
-%>
-<script>
-    alert("Data berhasil dihapus!");
-    window.location.href = "?pg=dashboard/kategoriobat";
-</script>
-<%
-    }
-
-    // Update kategori
-    if ("edit".equals(request.getParameter("aksi"))) {
-        KategoriObat k = new KategoriObat();
-        k.setId(Integer.parseInt(request.getParameter("id")));
-        k.setNama(request.getParameter("nama"));
-        k.setDeskripsi(request.getParameter("deskripsi"));
-        dao.update(k); // Pastikan method update di DAO sudah ada
-%>
-<script>
-    alert("Data berhasil diupdate!");
-    window.location.href = "?pg=dashboard/kategoriobat";
-</script>
-<%
-        }
-    }
-
     List<KategoriObat> list = dao.findAll();
     KategoriObat kategoriEdit = null;
 
@@ -56,6 +16,8 @@
     if ("edit".equals(aksi) && editId > 0) {
         kategoriEdit = dao.findById(editId);
     }
+
+    String err = request.getParameter("error");
 %>
 
 <div class="app-content-header">
@@ -79,10 +41,16 @@
 
 <section class="content">
     <div class="container-fluid">
+        <% if (err != null) {%>
+        <div class="alert alert-danger" role="alert">
+            <%= err%>
+        </div>
+        <% } %>
+        
         <h2 class="mb-4"></h2>
 
         <!-- Form tambah / edit -->
-        <form method="post" class="mb-4 row g-2">
+        <form method="POST" action="KategoriObatServlet" class="mb-4 row g-2">
             <% if (kategoriEdit != null) {%>
             <input type="hidden" name="id" value="<%= kategoriEdit.getId()%>">
             <div class="col-md-4">
@@ -136,7 +104,7 @@
                         <a href="?pg=dashboard/kategoriobat&aksi=edit&id=<%= k.getId()%>" class="btn btn-warning btn-sm me-1">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
-                        <form method="post" style="display:inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                        <form method="post" action="KategoriObatServlet" style="display:inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                             <input type="hidden" name="id" value="<%= k.getId()%>">
                             <button name="aksi" value="hapus" class="btn btn-danger btn-sm">
                                 <i class="bi bi-trash"></i> Hapus
