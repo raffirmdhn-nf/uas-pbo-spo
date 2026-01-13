@@ -6,12 +6,13 @@ package dev.enep.sms3_pbo_spo.controllers;
 
 import dev.enep.sms3_pbo_spo.dao.ObatDAO;
 import dev.enep.sms3_pbo_spo.models.Obat;
+import dev.enep.sms3_pbo_spo.models.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  *
@@ -69,56 +70,65 @@ public class ManajemenObatServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    ObatDAO dao = new ObatDAO();
-    String aksi = request.getParameter("aksi");
+        ObatDAO dao = new ObatDAO();
+        String aksi = request.getParameter("aksi");
 
-    try {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        // Ambil userId dari session (sesuaikan nama attribute session lu)
-        Integer userIdObj = (Integer) request.getSession().getAttribute("userId");
-        int userId = (userIdObj != null) ? userIdObj : 0; // kalau belum ada, minimal 0 dulu
-
-        // Buat objek Obat minimal untuk isi id dan stok
-        // (stok ini idealnya stok terbaru dari DB, tapi kita sesuaikan dengan DAO lu)
-        Obat o = new Obat();
-        o.setId(id);
-
-        // stok_awal & stok_akhir di log DAO lu pakai o.getStok()
-        // jadi kalau lu ngirim stok dari form hidden, isi di sini:
-        String stokStr = request.getParameter("stok");
-        if (stokStr != null && !stokStr.isEmpty()) {
-            o.setStok(Integer.parseInt(stokStr));
-        } else {
-            // kalau gak ada parameter stok, default 0 (log bisa jadi gak akurat)
-            o.setStok(0);
+        Users user = (Users) request.getSession().getAttribute("user-session");
+        if (user == null) {
+            response.sendRedirect("index.jsp?pg=login");
+            return;
         }
 
+        // ===== KURANGI STOK =====
         if ("kurangi-stok".equalsIgnoreCase(aksi)) {
-            dao.kurangStok(o, userId);
-            response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                int stok = Integer.parseInt(request.getParameter("stok"));
+
+                Obat o = new Obat();
+                o.setId(id);
+                o.setStok(stok);
+
+                dao.kurangStok(o, user.getId());
+                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+            } catch (Exception ex) {
+                System.getLogger(ManajemenObatServlet.class.getName())
+                        .log(System.Logger.Level.ERROR, "Error update stok", ex);
+                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + ex.getMessage());
+            }
             return;
         }
 
+        // ===== TAMBAH STOK =====
         if ("tambah-stok".equalsIgnoreCase(aksi)) {
-            dao.tambahStok(o, userId);
-            response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                int stok = Integer.parseInt(request.getParameter("stok"));
+
+                Obat o = new Obat();
+                o.setId(id);
+                o.setStok(stok);
+
+                dao.tambahStok(o, user.getId());
+                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+            } catch (Exception ex) {
+                System.getLogger(ManajemenObatServlet.class.getName())
+                        .log(System.Logger.Level.ERROR, "Error update stok", ex);
+                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + ex.getMessage());
+            }
             return;
         }
 
-        response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=Aksi tidak dikenal");
-
-    } catch (Exception ex) {
-        System.getLogger(ManajemenObatServlet.class.getName())
-              .log(System.Logger.Level.ERROR, "Error stok", ex);
-        response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + ex.getMessage());
+        response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
     }
-
-    response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
-    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

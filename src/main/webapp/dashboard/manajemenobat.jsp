@@ -13,37 +13,8 @@
     }
 
     ObatDAO dao = new ObatDAO();
+    List<Obat> list = dao.findAll();
 
-    // ====== HANDLE POST (tambah/kurangi stok) ======
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        try {
-            String aksi = request.getParameter("aksi");
-            String idStr = request.getParameter("id");
-            String stokStr = request.getParameter("stok");
-
-            int id = Integer.parseInt(idStr);
-            int stok = Integer.parseInt(stokStr);
-
-            Obat o = new Obat();
-            o.setId(id);
-            o.setStok(stok);
-
-            if ("tambah-stok".equalsIgnoreCase(aksi)) {
-                dao.tambahStok(o, user.getId());
-            } else if ("kurangi-stok".equalsIgnoreCase(aksi)) {
-                dao.kurangStok(o, user.getId());
-            }
-
-
-        } catch (Exception e) {
-            response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + e.getMessage());
-            return;
-        }
-    }
-
-    // ====== AMBIL LIST OBAT ======
-    List<Obat> list = dao.findAll(); 
-    
     String err = request.getParameter("error");
 %>
 
@@ -64,8 +35,10 @@
 <section class="content">
     <div class="container-fluid">
 
-        <% if (err != null && !err.isEmpty()) { %>
-            <div class="alert alert-danger"><%= err %></div>
+        <% if (err != null) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= err %>
+        </div>
         <% } %>
 
         <table class="table table-striped table-bordered">
@@ -88,21 +61,29 @@
                     <td><%= o.getFormattedExpiredDate() %></td>
                     <td><%= o.getFormattedUpdatedAt() %></td>
                     <td>
-                        <form method="post" action="index.jsp?pg=dashboard/manajemenobat" style="display:inline">
-                            <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
-                            <button name="aksi" value="kurangi-stok" class="btn btn-warning btn-sm">-</button>
+                        <form method="post" action="ManajemenObatServlet" style="display:inline">
+                            <input type="hidden" name="id" value="<%= o.getId() %>">
+                            <input type="hidden" name="stok" value="<%= o.getStok() %>">
+                            <button name="aksi"
+                                    value="kurangi-stok"
+                                    class="btn btn-warning btn-sm"
+                                    <%= (o.getStok() <= 0 ? "disabled" : "") %>>
+                                -
+                            </button>
                         </form>
 
-                        <form method="post" action="index.jsp?pg=dashboard/manajemenobat" style="display:inline">
-                            <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
-                            <button name="aksi" value="tambah-stok" class="btn btn-success btn-sm">+</button>
+                        <form method="post" action="ManajemenObatServlet" style="display:inline">
+                            <input type="hidden" name="id" value="<%= o.getId() %>">
+                            <input type="hidden" name="stok" value="<%= o.getStok() %>">
+                            <button name="aksi" value="tambah-stok" class="btn btn-success btn-sm">
+                                +
+                            </button>
                         </form>
                     </td>
                 </tr>
                 <% } %>
             </tbody>
         </table>
+
     </div>
 </section>
