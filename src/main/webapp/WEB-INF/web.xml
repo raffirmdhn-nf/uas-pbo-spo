@@ -4,9 +4,17 @@
         <servlet-name>KategoriObatServlet</servlet-name>
         <servlet-class>dev.enep.sms3_pbo_spo.controllers.KategoriObatServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ObatServlet</servlet-name>
+        <servlet-class>dev.enep.sms3_pbo_spo.controllers.ObatServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>KategoriObatServlet</servlet-name>
         <url-pattern>/KategoriObatServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ObatServlet</servlet-name>
+        <url-pattern>/ObatServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
