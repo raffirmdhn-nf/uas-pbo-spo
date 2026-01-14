@@ -1,47 +1,25 @@
 <%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
 <%@page import="java.util.List"%>
-<%@page import="java.sql.Date"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.ObatDAO"%>
 
 <%
     request.setAttribute("pageTitle", "Manajemen Stok Obat | Dashboard");
+
     Users user = (Users) session.getAttribute("user-session");
     if (user == null) {
+        response.sendRedirect("index.jsp?pg=login");
         return;
     }
 
     ObatDAO dao = new ObatDAO();
-
-    // Aksi tambah / kurang stok
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        String aksi = request.getParameter("aksi");
-        int id = Integer.parseInt(request.getParameter("id"));
-        int stok = Integer.parseInt(request.getParameter("stok"));
-
-        Obat o = new Obat();
-        o.setId(id);
-        o.setStok(stok);
-
-        if ("tambah-stok".equals(aksi)) {
-            dao.tambahStok(o, user.getId());
-        } else if ("kurangi-stok".equals(aksi)) {
-            dao.kurangStok(o, user.getId());
-        }
-%>
-<script>
-    window.location.href = "?pg=dashboard/manajemenobat"
-</script>
-<%
-    }
-
     List<Obat> list = dao.findAll();
+
+    String err = request.getParameter("error");
 %>
 
 <div class="app-content-header">
-    <!--begin::Container-->
     <div class="container-fluid">
-        <!--begin::Row-->
         <div class="row">
             <div class="col-sm-6"><h3 class="mb-0">Manajemen Stok Obat</h3></div>
             <div class="col-sm-6">
@@ -51,16 +29,18 @@
                 </ol>
             </div>
         </div>
-        <!--end::Row-->
     </div>
-    <!--end::Container-->
 </div>
-
 
 <section class="content">
     <div class="container-fluid">
-        <h2 class="mb-4"></h2>
-        <!-- Table list obat -->
+
+        <% if (err != null) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= err %>
+        </div>
+        <% } %>
+
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -73,32 +53,37 @@
                 </tr>
             </thead>
             <tbody>
-                <% for (Obat o : list) {%>
+                <% for (Obat o : list) { %>
                 <tr>
-                    <td><%= o.getId()%></td>
-                    <td><%= o.getNama()%></td>
-                    <td><%= o.getStok()%></td>
-                    <td><%= o.getFormattedExpiredDate()%></td>
-                    <td><%= o.getFormattedUpdatedAt()%></td>
+                    <td><%= o.getId() %></td>
+                    <td><%= o.getNama() %></td>
+                    <td><%= o.getStok() %></td>
+                    <td><%= o.getFormattedExpiredDate() %></td>
+                    <td><%= o.getFormattedUpdatedAt() %></td>
                     <td>
-                        <form method="post" style="display:inline">
-                            <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
-                            <button name="aksi" value="kurangi-stok" class="btn btn-warning btn-sm">
+                        <form method="post" action="ManajemenObatServlet" style="display:inline">
+                            <input type="hidden" name="id" value="<%= o.getId() %>">
+                            <input type="hidden" name="stok" value="<%= o.getStok() %>">
+                            <button name="aksi"
+                                    value="kurangi-stok"
+                                    class="btn btn-warning btn-sm"
+                                    <%= (o.getStok() <= 0 ? "disabled" : "") %>>
                                 -
                             </button>
                         </form>
-                        <form method="post" style="display:inline">
-                            <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <input type="hidden" name="stok" value="<%= o.getStok()%>">
+
+                        <form method="post" action="ManajemenObatServlet" style="display:inline">
+                            <input type="hidden" name="id" value="<%= o.getId() %>">
+                            <input type="hidden" name="stok" value="<%= o.getStok() %>">
                             <button name="aksi" value="tambah-stok" class="btn btn-success btn-sm">
                                 +
                             </button>
                         </form>
                     </td>
                 </tr>
-                <% }%>
+                <% } %>
             </tbody>
         </table>
+
     </div>
 </section>
