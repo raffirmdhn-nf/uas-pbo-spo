@@ -7,7 +7,6 @@ package dev.enep.sms3_pbo_spo.models;
 import dev.enep.sms3_pbo_spo.utils.Formatter;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 /**
  *

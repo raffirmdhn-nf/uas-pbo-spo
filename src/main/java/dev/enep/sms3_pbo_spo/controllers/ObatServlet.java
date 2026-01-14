@@ -124,11 +124,6 @@ public class ObatServlet extends HttpServlet {
             }
             return;
         }
-        
-        System.out.println("AKSI = " + aksi);
-        System.out.println("ID = " + request.getParameter("id"));
-        System.out.println("EXPIRED = " + request.getParameter("expired_date"));
-
     }
 
     /**
