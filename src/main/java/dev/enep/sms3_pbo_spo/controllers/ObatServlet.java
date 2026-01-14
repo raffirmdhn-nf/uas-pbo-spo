@@ -75,7 +75,7 @@ public class ObatServlet extends HttpServlet {
         ObatDAO dao = new ObatDAO();
         String aksi = request.getParameter("aksi");
 
-        // ===== TAMBAH OBAT =====
+        // ===== TAMBAH DATA =====
         if ("tambah".equals(aksi)) {
             try {
                 Obat o = new Obat();
@@ -92,7 +92,7 @@ public class ObatServlet extends HttpServlet {
             return;
         }
 
-        // ===== EDIT OBAT =====
+        // ===== EDIT DATA =====
         if ("edit".equals(aksi)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));

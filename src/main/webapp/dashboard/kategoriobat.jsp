@@ -76,7 +76,6 @@
                             data-deskripsi="<%= k.getDeskripsi() %>">
                         <i class="bi bi-pencil-square me-1"></i>Edit
                     </button>
-
                     <!-- Hapus Data -->
                     <form method="post"
                           action="KategoriObatServlet"
@@ -100,33 +99,27 @@
 <div class="modal fade" id="modalKategori" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <form method="post" action="KategoriObatServlet">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">Tambah Data</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="aksi" id="aksi" value="tambah">
-
                     <div class="mb-2">
                         <label>Nama Kategori</label>
                         <input type="text" name="nama" id="nama" class="form-control" required>
                     </div>
-
                     <div class="mb-2">
                         <label>Deskripsi</label>
                         <input type="text" name="deskripsi" id="deskripsi" class="form-control">
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

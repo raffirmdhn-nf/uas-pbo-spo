@@ -77,7 +77,6 @@
                             data-expired="<%= o.getExpired_date() %>">
                         <i class="bi bi-pencil-square me-1"></i>Edit
                     </button>
-
                     <!-- Hapus Data -->
                     <form method="post" action="ObatServlet"
                           style="display:inline"
@@ -105,27 +104,22 @@
                     <h5 class="modal-title" id="modalTitle">Tambah Data Obat</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="aksi" id="aksi" value="tambah">
-
                     <div class="mb-2">
                         <label>Nama Obat</label>
                         <input type="text" name="nama" id="nama" class="form-control" required>
                     </div>
-
                     <div class="mb-2">
                         <label>Stok</label>
                         <input type="number" name="stok" id="stok" class="form-control" required>
                     </div>
-
                     <div class="mb-2">
                         <label>Expired Date</label>
                         <input type="date" name="expired_date" id="expired_date" class="form-control" required>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Simpan</button>
                 </div>

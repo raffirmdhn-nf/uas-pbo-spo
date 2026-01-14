@@ -71,7 +71,6 @@
                                 -
                             </button>
                         </form>
-
                         <form method="post" action="ManajemenObatServlet" style="display:inline">
                             <input type="hidden" name="id" value="<%= o.getId() %>">
                             <input type="hidden" name="stok" value="<%= o.getStok() %>">
@@ -84,6 +83,5 @@
                 <% } %>
             </tbody>
         </table>
-
     </div>
 </section>

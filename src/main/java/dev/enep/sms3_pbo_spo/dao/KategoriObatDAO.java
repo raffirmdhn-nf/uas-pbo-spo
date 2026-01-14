@@ -49,7 +49,6 @@ public class KategoriObatDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
@@ -72,7 +71,6 @@ public class KategoriObatDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return kategori;
     }
 

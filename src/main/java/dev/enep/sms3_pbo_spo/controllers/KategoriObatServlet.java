@@ -97,9 +97,7 @@ public class KategoriObatServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 dao.softDelete(id);
             }
-
             response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
-
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(
