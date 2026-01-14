@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +42,7 @@
                         <li><a href="#about">Tentang kami</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#team">Tim</a></li>
+                        <li><a href="#blog">Galeri</a></li>
                         <li><a href="#contact">Kontak</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -105,7 +107,7 @@
                 <!-- Section Title -->
                 <div class="container section-title" data-aos="fade-up">
                     <h2>Tentang kami<br></h2>
-                    <p>Sistem HealthCare Management dirancang khusus sebagai solusi digital untuk membantu apoteker mengelola siklus hidup produk farmasi secara presisi. Kami fokus pada penyederhanaan manajemen inventaris, mulai dari pencatatan stok masuk, pemantauan masa kedaluwarsa, hingga otomatisasi laporan ketersediaan obat secara real-time.</p>
+                    <p>Sistem FarmaCare Management dirancang khusus sebagai solusi digital untuk membantu apoteker mengelola siklus hidup produk farmasi secara presisi. Kami fokus pada penyederhanaan manajemen inventaris, mulai dari pencatatan stok masuk, pemantauan masa kedaluwarsa, hingga otomatisasi laporan ketersediaan obat secara real-time.</p>
                 </div><!-- End Section Title -->
 
                 <div class="container">
@@ -147,7 +149,7 @@
 
                         <div class="col-lg-3 col-md-6">
                             <div class="stats-item text-center w-100 h-100">
-                                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Keamanan produk</p>
                             </div>
                         </div><!-- End Stats Item -->
@@ -345,8 +347,8 @@
                             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                                 <img src="landing/assets/img/masonry-portfolio/obat1.jpg" class="img-fluid" alt="">
                                 <div class="portfolio-info">
-                                    <h4>Obat 1</h4>
-                                    <a href="?pg=login">Selengkapnya</a>
+                                    <h4>OskaPil</h4>
+                                    <p>Pil</p>
                                 </div>
                             </div><!-- End Portfolio Item -->
 
@@ -354,22 +356,22 @@
                                 <img src="landing/assets/img/masonry-portfolio/obat2.jpg" class="img-fluid" alt="">
                                 <div class="portfolio-info">
                                     <h4>Paracetamol</h4>
-                                    <p>Obat</p>
+                                    <p>Pil</p>
                                 </div>
                             </div><!-- End Portfolio Item -->
 
                             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                                 <img src="landing/assets/img/masonry-portfolio/obat4.jpg" class="img-fluid" alt="">
                                 <div class="portfolio-info">
-                                    <h4>Flutrops</h4>
-                                    <p>Obat</p>
+                                    <h4>Obat</h4>
+                                    <p>P3K</p>
                                 </div>
                             </div><!-- End Portfolio Item -->
                             
-                            <LI><div class="text-center mt-4 mb-5">
+                            <div class="text-center mt-4 mb-5">
     <a href="?pg=login" class="btn btn-primary px-5 rounded shadow">Cek selengkapnya</a>
 </div>
-                                </LI>
+                                
 
                             
 
@@ -381,85 +383,83 @@
 
             </section><!-- /Portfolio Section -->
 
-            <!-- Team Section -->
-            <section id="team" class="team section light-background">
+            <!-- Team Section --><section id="team" class="team section light-background">
 
-                <!-- Section Title -->
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>Team</h2>
-                    <p>Team pengembang website ini</p>
-                </div><!-- End Section Title -->
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Team</h2>
+        <p>Tim Pengembang Website</p>
+      </div><!-- End Section Title -->
 
-                <div class="container">
+      <div class="container">
 
-                    <div class="row gy-4">
+        <div class="row justify-content-center">
 
-                        <div class="row justify-content-center gy-4">
-    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-        <div class="team-member">
-            <div class="member-img">
-                <img src="landing/assets/img/team/team-1.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="member-info">
+          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="landing/assets/img/team/raffi.jpeg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
                 <h4>Raffi Ramadhan Tajudin</h4>
                 <span>0110224204</span>
+              </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-        <div class="team-member">
-            <div class="member-img">
-                <img src="landing/assets/img/team/team-2.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="member-info">
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="landing/assets/img/team/rumai.jpeg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
                 <h4>Rumaisha</h4>
                 <span>0110224087</span>
+              </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-        <div class="team-member">
-            <div class="member-img">
-                <img src="landing/assets/img/team/team-3.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="member-info">
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="landing/assets/img/team/ikal.jpeg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
                 <h4>Haikal Pilar Yudhistira</h4>
                 <span>0110224141</span>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+          </div><!-- End Team Member -->
 
-<div class="row justify-content-center gy-4 mt-2">
-    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-        <div class="team-member">
-            <div class="member-img">
-                <img src="landing/assets/img/team/team-4.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="member-info">
+          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="landing/assets/img/team/nopal.jpeg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
                 <h4>Noval Putra Siregar</h4>
                 <span>0110224135</span>
+              </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="500">
-        <div class="team-member">
-            <div class="member-img">
-                <img src="landing/assets/img/team/team-4.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="member-info">
+          </div><!-- End Team Member -->
+          
+          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="landing/assets/img/team/akmal.jpeg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
                 <h4>Akmal Maulana</h4>
                 <span>0110224037</span>
+              </div>
             </div>
+          </div><!-- End Team Member -->
+
         </div>
-    </div>
-</div>
 
-                    </div>
+      </div>
 
-                </div>
-
-            </section><!-- /Team Section -->
+    </section><!-- /Team Section --><!-- /Team Section -->
 
             
 
@@ -482,23 +482,23 @@
                             <div class="faq-container">
 
                                 <div class="faq-item faq-active">
-                                    <h3>Bagaimana aturan minum obat yang benar?</h3>
+                                    <h3>Obat flu apa yang paling laku keras di farmasi ini?</h3>
                                     <div class="faq-content">
-                                        <p>Ikuti petunjuk pada label kemasan. Perhatikan apakah obat harus diminum sebelum atau sesudah makan untuk hasil maksimal.</div>
+                                        <p>Flutrop sangat dianjurkan untuk keadaan yang sangat dibutuhkan</div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div><!-- End Faq item-->
 
                                 <div class="faq-item">
-                                    <h3>Apa yang harus dilakukan jika saya lupa minum satu dosis?</h3>
+                                    <h3>Aapakah stok barang akan selalu ada jika apotek butuh stok banyak??</h3>
                                     <div class="faq-content">
-                                        <p>Segera minum jika ingat. Namun, jika sudah hampir waktu dosis berikutnya, abaikan dosis yang terlewat dan jangan menggandakan dosis.</div>
+                                        <p>Stok kami sangat cukup untuk apotek yang butuh banyak stok</div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div><!-- End Faq item-->
 
                                 <div class="faq-item">
-                                    <h3>Apakah ada efek samping yang harus saya waspadai?</h3>
+                                    <h3>Apakah sudah terjamin aman pembelian disini?</h3>
                                     <div class="faq-content">
-                                        <p>Efek samping umum meliputi kantuk atau mual. Jika muncul reaksi alergi parah (sesak napas/gatal), segera hubungi dokter.</div>
+                                        <p>Sudah terjamin 100% keamanan kami selalu memantau stok dan kadarluarsa obat yang kami miliki</div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div><!-- End Faq item-->
 
@@ -511,7 +511,54 @@
                 </div>
 
             </section><!-- /Faq Section -->
+<script>
+  // Mengambil semua elemen FAQ
+  const faqItems = document.querySelectorAll('.faq-item');
 
+  faqItems.forEach(item => {
+    // Mencari judul (h3) dan tombol toggle (i) di dalam setiap item
+    const header = item.querySelector('h3');
+    const toggle = item.querySelector('.faq-toggle');
+
+    // Fungsi untuk buka-tutup
+    const toggleFaq = () => {
+      // Hapus class 'faq-active' dari item lain jika ingin hanya satu yang terbuka (opsional)
+      // faqItems.forEach(otherItem => {
+      //   if (otherItem !== item) otherItem.classList.remove('faq-active');
+      // });
+
+      // Tambah atau hapus class 'faq-active' pada item yang diklik
+      item.classList.toggle('faq-active');
+    };
+
+    // Jalankan fungsi saat judul atau tombol diklik
+    header.addEventListener('click', toggleFaq);
+    toggle.addEventListener('click', toggleFaq);
+  });
+</script>
+
+<style>
+  /* Tambahan CSS agar kursor berubah jadi jari saat diarahkan ke judul */
+  .faq-item h3, .faq-toggle {
+    cursor: pointer;
+  }
+  
+  /* Pastikan konten tersembunyi jika tidak ada class faq-active */
+  .faq-item .faq-content {
+    display: none;
+  }
+  
+  /* Tampilkan konten jika ada class faq-active */
+  .faq-item.faq-active .faq-content {
+    display: block;
+  }
+
+  /* Animasi putar ikon chevron (>) saat aktif */
+  .faq-item.faq-active .faq-toggle {
+    transform: rotate(90deg);
+    transition: 0.3s;
+  }
+</style>
                                 
 
                             </div>
@@ -524,6 +571,235 @@
 
             </section><!-- /Faq Section -->
 
+            <!-- Internal CSS -->
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .navbar nav a {
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar nav a:hover {
+            color: #3b82f6;
+        }
+
+        .btn {
+            background: #3b82f6;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        /* Blog Section */
+        .blog {
+            text-align: center;
+            padding: 80px 60px;
+            background: #f9f9ff;
+        }
+
+        .blog h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .blog p {
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Blog Cards */
+        .blog-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: 0.3s ease;
+        }
+
+        .blog-card:hover img {
+            filter: brightness(0.9);
+        }
+
+        .blog-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .blog-info small {
+            display: block;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .blog-info h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .blog-info p {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Popup Image (Lightbox) */
+        .popup {
+  display: none;
+  position: fixed;
+  z-index: 9999; /* pastikan di atas elemen lain */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
+        @media (max-width: 1024px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .blog-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+            <!-- Portfolio Section -->
+            <section id="blog" class="blog section">
+        <h2>Galeri</h2>
+        <p>Dokumentasi</p>
+
+        <div class="blog-container">
+            <!-- Blog 1 -->
+            <div class="blog-card" onclick="openPopup(this)">
+                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
+                <div class="blog-info">
+                    <small>LOREM</small>
+                    <h3>LOREM</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                </div>
+            </div>
+
+            <!-- Blog 2 -->
+            <div class="blog-card" onclick="openPopup(this)">
+                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
+                <div class="blog-info">
+                    <small>LOREM</small>
+                    <h3>LOREM</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                </div>
+            </div>
+
+            <!-- Blog 3 -->
+            <div class="blog-card" onclick="openPopup(this)">
+                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+                <div class="blog-info">
+                    <small>LOREM</small>
+                    <h3>LOREM</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- Popup Image -->
+<div class="popup" id="popup" onclick="closePopup()">
+  <img id="popup-img" src="" alt="Popup">
+</div>
+
+<!-- Script -->
+<script>
+  function openPopup(element) {
+    const imgSrc = element.querySelector("img").src;
+    document.getElementById("popup-img").src = imgSrc;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+
+            <!-- /Portfolio Section -->
+            
             <!-- Contact Section -->
             <section id="contact" class="contact section">
 
@@ -613,7 +889,7 @@
             
 
             <div class="container copyright text-center mt-4">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">Healhcare</strong> <span>All Rights Reserved</span></p>
+                <p>Â© <span>Copyright</span> <strong class="px-1 sitename">FarmaCare</strong> <span>All Rights Reserved</span></p>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
                     <!-- You can delete the links only if you've purchased the pro version. -->
