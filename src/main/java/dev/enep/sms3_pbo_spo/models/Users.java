@@ -7,10 +7,11 @@ package dev.enep.sms3_pbo_spo.models;
 import dev.enep.sms3_pbo_spo.utils.Formatter;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
- * @author raffi
+ * @author admin
  */
 public class Users implements Serializable {
 

@@ -12,8 +12,12 @@
     </servlet>
 
     <servlet>
-        <servlet-name>KategoriObatServlet</servlet-name>
-        <servlet-class>dev.enep.sms3_pbo_spo.controllers.KategoriObatServlet</servlet-class>
+        <servlet-name>User</servlet-name>
+        <servlet-class>dev.enep.sms3_pbo_spo.controllers.UserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>dev.enep.sms3_pbo_spo.controllers.UserServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -27,8 +31,12 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>KategoriObatServlet</servlet-name>
-        <url-pattern>/KategoriObatServlet</url-pattern>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
     
     <session-config>
