@@ -102,8 +102,8 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Role</th>
-                    <th>Tgl Dibuat</th>
-                    <th>Tgl Dirubah</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
