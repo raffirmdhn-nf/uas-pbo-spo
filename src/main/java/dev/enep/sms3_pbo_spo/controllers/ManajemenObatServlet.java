@@ -72,7 +72,6 @@ public class ManajemenObatServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         ObatDAO dao = new ObatDAO();
         String aksi = request.getParameter("aksi");
 
@@ -82,48 +81,34 @@ public class ManajemenObatServlet extends HttpServlet {
             return;
         }
 
-        // ===== KURANGI STOK =====
-        if ("kurangi-stok".equalsIgnoreCase(aksi)) {
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int stok = Integer.parseInt(request.getParameter("stok"));
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int stokLama = Integer.parseInt(request.getParameter("stok"));
+            int jumlah = Integer.parseInt(request.getParameter("jumlah"));
 
-                Obat o = new Obat();
-                o.setId(id);
-                o.setStok(stok);
+            Obat o = new Obat();
+            o.setId(id);
 
-                dao.kurangStok(o, user.getId());
-                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
-            } catch (Exception ex) {
-                System.getLogger(ManajemenObatServlet.class.getName())
-                        .log(System.Logger.Level.ERROR, "Error update stok", ex);
-                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + ex.getMessage());
-            }
-            return;
-        }
-
-        // ===== TAMBAH STOK =====
-        if ("tambah-stok".equalsIgnoreCase(aksi)) {
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int stok = Integer.parseInt(request.getParameter("stok"));
-
-                Obat o = new Obat();
-                o.setId(id);
-                o.setStok(stok);
-
+            if ("tambah-stok".equalsIgnoreCase(aksi)) {
+                o.setStok(stokLama + jumlah);
                 dao.tambahStok(o, user.getId());
-                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
-            } catch (Exception ex) {
-                System.getLogger(ManajemenObatServlet.class.getName())
-                        .log(System.Logger.Level.ERROR, "Error update stok", ex);
-                response.sendRedirect("index.jsp?pg=dashboard/manajemenobat&error=" + ex.getMessage());
             }
-            return;
-        }
 
-        response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+            if ("kurangi-stok".equalsIgnoreCase(aksi)) {
+                o.setStok(stokLama - jumlah);
+                dao.kurangStok(o, user.getId());
+            }
+
+            response.sendRedirect("index.jsp?pg=dashboard/manajemenobat");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(
+                    "index.jsp?pg=dashboard/manajemenobat&error=" + e.getMessage()
+            );
+        }
     }
+    
     /**
      * Returns a short description of the servlet.
      *

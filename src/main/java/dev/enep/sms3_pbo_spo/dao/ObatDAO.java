@@ -58,7 +58,6 @@ public class ObatDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
@@ -84,7 +83,6 @@ public class ObatDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return obat;
     }
 
@@ -108,7 +106,6 @@ public class ObatDAO {
                 ps.setInt(5, o.getId());
                 ps.executeUpdate();
             }
-
             // Insert log jika stok berubah
             if (oldO.getStok() != o.getStok()) {
                 String sqlLog = "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)";
@@ -133,7 +130,6 @@ public class ObatDAO {
                 ps.setInt(1, o.getId());
                 ps.executeUpdate();
             }
-
             // Insert log
             try (PreparedStatement psLog = c.prepareStatement(
                     "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)")) {
@@ -154,7 +150,6 @@ public class ObatDAO {
                 ps.setInt(1, o.getId());
                 ps.executeUpdate();
             }
-
             // Insert log
             try (PreparedStatement psLog = c.prepareStatement(
                     "INSERT INTO stok_log (keterangan, stok_awal, stok_akhir, obat_id, user_id) VALUES (?, ?, ?, ?, ?)")) {
@@ -171,5 +166,4 @@ public class ObatDAO {
     public void soft(int parseInt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

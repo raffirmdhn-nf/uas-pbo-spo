@@ -1,26 +1,19 @@
-<%@page import="dev.enep.sms3_pbo_spo.dao.KategoriObatDAO"%>
-<%@page import="dev.enep.sms3_pbo_spo.models.KategoriObat"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
 <%@page import="java.util.List"%>
-<%@page import="java.sql.Date"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.ObatDAO"%>
 
 <%
     request.setAttribute("pageTitle", "Manajemen Obat | Dashboard");
-    ObatDAO dao = new ObatDAO();
 
-    List<Obat> list = dao.findAll();
-    Obat obatEdit = null;
-
-    String aksi = request.getParameter("aksi"); // dari query param
-    String editIdParam = request.getParameter("id");
-    int editId = (editIdParam != null && !editIdParam.isEmpty()) ? Integer.parseInt(editIdParam) : 0;
-
-    if ("edit".equals(aksi) && editId > 0) {
-        obatEdit = dao.findById(editId);
+    Users user = (Users) session.getAttribute("user-session");
+    if (user == null) {
+        response.sendRedirect("index.jsp?pg=login");
+        return;
     }
 
-    String err = request.getParameter("error");
+    ObatDAO dao = new ObatDAO();
+    List<Obat> list = dao.findAll();
 %>
 
 <div class="app-content-header">
@@ -41,86 +34,120 @@
     <!--end::Container-->
 </div>
 
-
-<section class="content">
-    <div class="container-fluid">
-        <% if (err != null) {%>
-        <div class="alert alert-danger" role="alert">
-            <%= err%>
-        </div>
-        <% } %>
-        
-        <h2 class="mb-4"></h2>
-
-        <!-- Form tambah / edit -->
-        <form method="POST" action="ObatServlet" class="mb-4 row g-2">
-            <% if (obatEdit != null) {%>
-            <input type="hidden" name="id" value="<%= obatEdit.getId()%>">
-            <div class="col-md-3">
-                <input type="text" name="nama" class="form-control" placeholder="Nama obat" value="<%= obatEdit.getNama()%>" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" name="stok" class="form-control" placeholder="Stok" value="<%= obatEdit.getStok()%>" >
-            </div>
-            <div class="col-md-3">
-                <input type="date" name="expired_date" class="form-control" placeholder="Expired date" value="<%= obatEdit.getExpired_date()%>" >
-            </div>
-            <div class="col-md-3">
-                <button type="submit" name="aksi" value="edit" class="btn btn-primary w-100">
-                    <i class="bi bi-plus-circle"></i> Update
-                </button>
-            </div>
-            <% } else { %>
-            <div class="col-md-3">
-                <input type="text" name="nama" class="form-control" placeholder="Nama obat" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" name="stok" class="form-control" placeholder="Stok">
-            </div>
-            <div class="col-md-3">
-                <input type="date" name="expired_date" class="form-control" placeholder="Expired date">
-            </div>
-            <div class="col-md-3">
-                <button type="submit" name="aksi" value="tambah" class="btn btn-success w-100">
-                    <i class="bi bi-plus-circle"></i> Tambah
-                </button>
-            </div>
-            <% } %>
-        </form>
-
-
-        <!-- Table list obat -->
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Stok</th>
-                    <th>Expired date</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (Obat o : list) {%>
-                <tr>
-                    <td><%= o.getId()%></td>
-                    <td><%= o.getNama()%></td>
-                    <td><%= o.getStok()%></td>
-                    <td><%= o.getExpired_date()%></td>
-                    <td>
-                        <a href="?pg=dashboard/obat&aksi=edit&id=<%= o.getId()%>" class="btn btn-warning btn-sm me-1">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <form method="post" action="ObatServlet" style="display:inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                            <input type="hidden" name="id" value="<%= o.getId()%>">
-                            <button name="aksi" value="hapus" class="btn btn-danger btn-sm">
-                                <i class="bi bi-trash"></i> Hapus
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <% }%>
-            </tbody>
-        </table>
+<div class="container-fluid"
+     
+    <!-- Button Tambah -->
+    <div class="d-flex justify-content-end mb-3">
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalObat">
+            <i class="bi bi-plus-circle me-2"></i> Tambah Data
+        </button>
     </div>
-</section>
+
+    <!-- Tabel Data -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nama Obat</th>
+                <th>Stok</th>
+                <th>Expired Date</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (Obat o : list) { %>
+            <tr>
+                <td><%= o.getId() %></td>
+                <td><%= o.getNama() %></td>
+                <td><%= o.getStok() %></td>
+                <td><%= o.getExpired_date() %></td>
+                <td>
+                    <!-- Edit Data -->
+                    <button type="button"
+                            class="btn btn-warning btn-sm me-1"
+                            style="width:100px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalObat"
+                            data-id="<%= o.getId() %>"
+                            data-nama="<%= o.getNama() %>"
+                            data-stok="<%= o.getStok() %>"
+                            data-expired="<%= o.getExpired_date() %>">
+                        <i class="bi bi-pencil-square me-1"></i>Edit
+                    </button>
+                    <!-- Hapus Data -->
+                    <form method="post" action="ObatServlet"
+                          style="display:inline"
+                          onsubmit="return confirm('Anda yakin ingin menghapus data ini?');">
+                        <input type="hidden" name="id" value="<%= o.getId() %>">
+                        <button name="aksi" value="hapus"
+                                class="btn btn-danger btn-sm"
+                                style="width:100px">
+                            <i class="bi bi-trash me-1"></i>Hapus
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===== Modal Tambah / Edit ===== -->
+<div class="modal fade" id="modalObat" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="ObatServlet">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Tambah Data Obat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="aksi" id="aksi" value="tambah">
+                    <div class="mb-2">
+                        <label>Nama Obat</label>
+                        <input type="text" name="nama" id="nama" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label>Stok</label>
+                        <input type="number" name="stok" id="stok" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label>Expired Date</label>
+                        <input type="date" name="expired_date" id="expired_date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+const modal = document.getElementById('modalObat');
+
+modal.addEventListener('show.bs.modal', function (event) {
+    const btn = event.relatedTarget;
+
+    document.getElementById('id').value = '';
+    document.getElementById('nama').value = '';
+    document.getElementById('stok').value = '';
+    document.getElementById('expired_date').value = '';
+    document.getElementById('aksi').value = 'tambah';
+    document.getElementById('modalTitle').innerText = 'Tambah Data Obat';
+
+    if (btn && btn.dataset.id) {
+        document.getElementById('id').value = btn.dataset.id;
+        document.getElementById('nama').value = btn.dataset.nama;
+        document.getElementById('stok').value = btn.dataset.stok;
+        document.getElementById('expired_date').value = btn.dataset.expired;
+        document.getElementById('aksi').value = 'edit';
+        document.getElementById('modalTitle').innerText = 'Edit Data Obat';
+    }
+});
+</script>

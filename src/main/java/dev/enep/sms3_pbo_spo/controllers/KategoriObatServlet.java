@@ -74,50 +74,36 @@ public class KategoriObatServlet extends HttpServlet {
         KategoriObatDAO dao = new KategoriObatDAO();
         String aksi = request.getParameter("aksi");
 
-        // ===== EKSEKUSI TOMBOL HAPUS DATA =====
-        if ("hapus".equalsIgnoreCase(aksi)) {
-            try {
-                dao.softDelete(Integer.parseInt(request.getParameter("id")));
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
-            } catch (Exception ex) {
-                System.getLogger(KategoriObatServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat&error=" + ex.getMessage());
-            }
-            return;
-        }
-
-        // ===== EKSEKUSI TAMBAH DATA =====
-        if ("tambah".equals(aksi)) {
-            try {
+        try {
+            // ===== TAMBAH DATA =====
+            if ("tambah".equalsIgnoreCase(aksi)) {
                 KategoriObat k = new KategoriObat();
                 k.setNama(request.getParameter("nama"));
                 k.setDeskripsi(request.getParameter("deskripsi"));
                 dao.insert(k);
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
-            } catch (Exception ex) {
-                System.getLogger(KategoriObatServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat&error=" + ex.getMessage());
             }
-            return;
-        }
 
-        // ===== EKSEKUSI TAMBAH DATA =====
-        if ("edit".equals(aksi)) {
-            try {
+            // ===== EDIT DATA =====
+            else if ("edit".equalsIgnoreCase(aksi)) {
                 KategoriObat k = new KategoriObat();
                 k.setId(Integer.parseInt(request.getParameter("id")));
                 k.setNama(request.getParameter("nama"));
                 k.setDeskripsi(request.getParameter("deskripsi"));
                 dao.update(k);
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
-            } catch (Exception ex) {
-                System.getLogger(KategoriObatServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/kategoriobat&error=" + ex.getMessage());
             }
-            return;
-        }
 
-        response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
+            // ===== HAPUS DATA =====
+            else if ("hapus".equalsIgnoreCase(aksi)) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                dao.softDelete(id);
+            }
+            response.sendRedirect("index.jsp?pg=dashboard/kategoriobat");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(
+                "index.jsp?pg=dashboard/kategoriobat&error=" + e.getMessage()
+            );
+        }
     }
 
     /**
