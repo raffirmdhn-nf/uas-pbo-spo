@@ -1,3 +1,7 @@
+<%@page import="dev.enep.sms3_pbo_spo.dao.StokLogDAO"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="dev.enep.sms3_pbo_spo.dao.UserDAO"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.KategoriObat"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
 <%@page import="java.util.List"%>
@@ -6,9 +10,38 @@
 <%
     ObatDAO obatDao = new ObatDAO();
     KategoriObatDAO ktgObatDao = new KategoriObatDAO();
+    UserDAO userDao = new UserDAO();
+    StokLogDAO stokLogDao = new StokLogDAO();
 
     List<Obat> listObat = obatDao.findAll();
     List<KategoriObat> listKtgObat = ktgObatDao.findAll();
+
+    List<User> listUser = userDao.findAll();
+
+    // Ambil data untuk grafik
+    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    List<Object[]> stokLogData = stokLogDao.getStokLogPerBulan(currentYear);
+
+    // Inisialisasi array untuk chart
+    int[] stokMasukData = new int[12];  // 12 bulan
+    int[] stokKeluarData = new int[12]; // 12 bulan
+
+    // Set semua nilai awal ke 0
+    for (int i = 0; i < 12; i++) {
+        stokMasukData[i] = 0;
+        stokKeluarData[i] = 0;
+    }
+
+    // Isi array dengan data dari database
+    for (Object[] row : stokLogData) {
+        int bulan = (Integer) row[0]; // Bulan (1-12)
+        int stokMasuk = (Integer) row[1];
+        int stokKeluar = (Integer) row[2];
+
+        // Array index dimulai dari 0, bulan dari 1
+        stokMasukData[bulan - 1] = stokMasuk;
+        stokKeluarData[bulan - 1] = stokKeluar;
+    }
 %>
 
 <style>
@@ -125,13 +158,13 @@
             <div class="col-lg-4 col-md-6">
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>42</h3>
+                        <h3><%= listUser.size()%></h3>
                         <p>Jumlah User</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <a href="?pg=dashboard/users" class="small-box-footer">
+                    <a href="?pg=dashboard/user" class="small-box-footer">
                         Lihat Detail <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -142,8 +175,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h3 class="card-title mb-0">
                             <i class="fas fa-chart-line me-1"></i>
                             Grafik Stok Log
                         </h3>
@@ -159,30 +192,46 @@
 
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
 <script>
-    // Data untuk chart stok log
+    // Data untuk chart stok log dari database
     const ctx = document.getElementById('stokLogChart').getContext('2d');
+
+    // Data untuk chart
+    const chartData = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+            'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+        datasets: [{
+                label: 'Stok Masuk',
+                data: [
+    <%= stokMasukData[0]%>, <%= stokMasukData[1]%>, <%= stokMasukData[2]%>,
+    <%= stokMasukData[3]%>, <%= stokMasukData[4]%>, <%= stokMasukData[5]%>,
+    <%= stokMasukData[6]%>, <%= stokMasukData[7]%>, <%= stokMasukData[8]%>,
+    <%= stokMasukData[9]%>, <%= stokMasukData[10]%>, <%= stokMasukData[11]%>
+                ],
+                borderColor: 'rgb(40, 167, 69)',
+                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2
+            }, {
+                label: 'Stok Keluar',
+                data: [
+    <%= stokKeluarData[0]%>, <%= stokKeluarData[1]%>, <%= stokKeluarData[2]%>,
+    <%= stokKeluarData[3]%>, <%= stokKeluarData[4]%>, <%= stokKeluarData[5]%>,
+    <%= stokKeluarData[6]%>, <%= stokKeluarData[7]%>, <%= stokKeluarData[8]%>,
+    <%= stokKeluarData[9]%>, <%= stokKeluarData[10]%>, <%= stokKeluarData[11]%>
+                ],
+                borderColor: 'rgb(220, 53, 69)',
+                backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2
+            }]
+    };
+
     const stokLogChart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ago', 'Sep', 'Okt', 'Nov', 'Des'],
-            datasets: [{
-                    label: 'Stok Masuk',
-                    data: [120, 150, 180, 170, 190, 200, 220, 210, 230, 250, 240, 260],
-                    borderColor: 'rgb(40, 167, 69)',
-                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }, {
-                    label: 'Stok Keluar',
-                    data: [80, 90, 100, 95, 110, 120, 130, 125, 140, 150, 145, 160],
-                    borderColor: 'rgb(220, 53, 69)',
-                    backgroundColor: 'rgba(220, 53, 69, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }]
-        },
+        data: chartData,
         options: {
             responsive: true,
             maintainAspectRatio: true,
@@ -191,19 +240,41 @@
                     display: true,
                     position: 'top',
                 },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                },
                 title: {
-                    display: false
+                    display: true,
+                    text: 'Grafik Stok Log Tahun <%= currentYear%>',
+                    font: {
+                        size: 16
+                    }
                 }
             },
             scales: {
                 y: {
                     beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Jumlah Stok'
+                    },
                     ticks: {
                         callback: function (value) {
                             return value + ' unit';
                         }
                     }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan'
+                    }
                 }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'nearest'
             }
         }
     });

@@ -46,4 +46,46 @@ public class StokLogDAO {
             return list;
         }
     }
+    
+    public List<Object[]> getStokLogPerBulan(int tahun) throws SQLException {
+        String sql = "SELECT "
+                + "    EXTRACT(MONTH FROM created_at)::integer as bulan, "
+                + "    COUNT(CASE WHEN keterangan ILIKE 'Tambah%' THEN 1 END) as stok_masuk, "
+                + "    COUNT(CASE WHEN keterangan ILIKE 'Kurangi%' THEN 1 END) as stok_keluar "
+                + "FROM stok_log "
+                + "WHERE EXTRACT(YEAR FROM created_at) = ? "
+                + "GROUP BY EXTRACT(MONTH FROM created_at) "
+                + "ORDER BY bulan";
+
+        List<Object[]> data = new ArrayList<>();
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1, tahun);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = new Object[3];
+                    row[0] = rs.getInt("bulan");      // Bulan (1-12)
+                    row[1] = rs.getInt("stok_masuk");  // Jumlah stok masuk
+                    row[2] = rs.getInt("stok_keluar"); // Jumlah stok keluar
+                    data.add(row);
+                }
+            }
+        }
+        return data;
+    }
+
+    public List<Integer> getAvailableYears() throws SQLException {
+        String sql = "SELECT DISTINCT YEAR(created_at) as tahun "
+                + "FROM stok_log "
+                + "ORDER BY tahun DESC";
+
+        List<Integer> years = new ArrayList<>();
+        try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                years.add(rs.getInt("tahun"));
+            }
+        }
+        return years;
+    }
 }
