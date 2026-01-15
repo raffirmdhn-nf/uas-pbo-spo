@@ -1,4 +1,4 @@
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%
     String aksi = request.getParameter("aksi");
     if ("POST".equalsIgnoreCase(request.getMethod())) {
@@ -10,7 +10,7 @@
             return;
         }
     }
-    Users user = (Users) session.getAttribute("user-session");
+    User user = (User) session.getAttribute("user-session");
 
 %>
 

@@ -1,12 +1,12 @@
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%
-    Users user = (Users) session.getAttribute("user-session");
+    User user = (User) session.getAttribute("user-session");
     if (user == null) {
         return;
     }
 
     String currentPg = request.getParameter("pg"); // ambil query param ?pg
-    Boolean isAdmin = "admin".equalsIgnoreCase(user.getRole());
+    Boolean isAdmin = user.getRole_id() == 1;
 %>
 
 <!--begin::Sidebar-->
@@ -39,7 +39,7 @@
                 role="menu"
                 data-accordion="false"
                 >
-                <li class="nav-header" style="text-transform: uppercase"><%= user.getRole()%></li>
+                <li class="nav-header" style="text-transform: uppercase"><%= user.getRole_nama()%></li>
 
                 <% if (isAdmin) {%>
                 <li class="nav-item">
@@ -49,6 +49,14 @@
                     </a>
                 </li>
                 <% } %>
+                <% if (isAdmin) {%>
+                <li class="nav-item">
+                    <a href="?pg=dashboard/user" class="nav-link <%= "dashboard/user".equals(currentPg) ? "active" : ""%>">
+                        <i class="nav-icon bi bi-tags"></i>
+                        <p>Manajemen User</p>
+                    </a>
+                </li>
+                <% }%>
                 <% if (isAdmin) {%>
                 <li class="nav-item">
                     <a href="?pg=dashboard/kategoriobat" class="nav-link <%= "dashboard/kategoriobat".equals(currentPg) ? "active" : ""%>">

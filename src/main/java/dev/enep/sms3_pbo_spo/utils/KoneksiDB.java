@@ -11,8 +11,8 @@ public class KoneksiDB {
             Class.forName("org.postgresql.Driver");
             
             String url = "jdbc:postgresql://localhost:5432/db_pbo_spo";
-            String user = "user";
-            String pass = "rumay"; //ganti    dengan password masing-masing
+            String user = "postgres";
+            String pass = "123"; //ganti    dengan password masing-masing
 
             return DriverManager.getConnection(url, user, pass);
         } catch (Exception e) {

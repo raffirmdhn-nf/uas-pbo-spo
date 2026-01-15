@@ -13,13 +13,13 @@ import java.text.SimpleDateFormat;
  *
  * @author admin
  */
-public class Users implements Serializable {
+public class User implements Serializable {
 
-    private int id;
-    private String username, password, role;
+    private int id, role_id;
+    private String username, password, role_nama;
     private Timestamp deleted_at, created_at, updated_at;
 
-    public Users() {
+    public User() {
     }
 
     public int getId() {
@@ -46,12 +46,20 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public int getRole_id() {
+        return role_id;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
+    }
+
+    public String getRole_nama() {
+        return role_nama;
+    }
+
+    public void setRole_nama(String role_nama) {
+        this.role_nama = role_nama;
     }
 
     public Timestamp getDeleted_at() {

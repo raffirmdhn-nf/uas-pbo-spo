@@ -1,12 +1,12 @@
 <%@page import="dev.enep.sms3_pbo_spo.dao.StokLogDAO"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.StokLog"%>
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Date"%>
 
 <%
     request.setAttribute("pageTitle", "Riwayat Stok Obat | Dashboard");
-    Users user = (Users) session.getAttribute("user-session");
+    User user = (User) session.getAttribute("user-session");
     if (user == null) {
         return;
     }

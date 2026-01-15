@@ -4,7 +4,7 @@
  */
 package dev.enep.sms3_pbo_spo.dao;
 
-import dev.enep.sms3_pbo_spo.models.Users;
+import dev.enep.sms3_pbo_spo.models.User;
 import dev.enep.sms3_pbo_spo.utils.KoneksiDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,30 +19,34 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public void insert(Users u) throws Exception {
-        String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+    public void insert(User u) throws Exception {
+        String sql = "INSERT INTO users (username, password, role_id) VALUES (?, MD5(?), ?)";
 
         try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, u.getUsername());
             ps.setString(2, u.getPassword());
-            ps.setString(3, u.getRole());
+            ps.setInt(3, u.getRole_id());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List<Users> findAll() throws Exception {
-        List<Users> list = new ArrayList<>();
-        String sql = "SELECT id, nama, password, role, created_at, updated_at FROM users WHERE deleted_at IS NULL";
+    public List<User> findAll() throws Exception {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT "
+                + "u.id, u.username, u.role_id, r.nama as role_nama, u.created_at, u.updated_at "
+                + "FROM users u "
+                + "JOIN role r ON r.id = u.role_id "
+                + "WHERE u.deleted_at IS NULL ORDER BY u.id ASC";
 
         try (Connection c = KoneksiDB.getConnection(); Statement st = c.createStatement(); ResultSet rs = st.executeQuery(sql);) {
             while (rs.next()) {
-                Users u = new Users();
+                User u = new User();
                 u.setId(rs.getInt("id"));
-                u.setUsername(rs.getString("usernama"));
-                u.setPassword(rs.getString("password"));
-                u.setRole(rs.getString("role"));
+                u.setUsername(rs.getString("username"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setRole_nama(rs.getString("role_nama"));
                 u.setCreated_at(rs.getTimestamp("created_at"));
                 u.setUpdated_at(rs.getTimestamp("updated_at"));
 
@@ -55,9 +59,13 @@ public class UserDAO {
         return list;
     }
 
-    public Users findById(int id) throws Exception {
-        Users u = new Users();
-        String sql = "SELECT id, nama, password, role, created_at, updated_at FROM users WHERE id = ? AND deleted_at IS NULL";
+    public User findById(int id) throws Exception {
+        User u = new User();
+        String sql = "SELECT "
+                + "u.id, u.username, u.role_id, r.nama as role_nama, u.created_at, u.updated_at "
+                + "FROM users u "
+                + "JOIN role r ON r.id = u.role_id "
+                + "WHERE u.id = ? AND u.deleted_at IS NULL";
 
         try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setInt(1, id);
@@ -66,11 +74,12 @@ public class UserDAO {
 
             if (rs.next()) {
                 u.setId(rs.getInt("id"));
-                u.setUsername(rs.getString("usernama"));
-                u.setPassword(rs.getString("password"));
-                u.setRole(rs.getString("role"));
+                u.setUsername(rs.getString("username"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setRole_nama(rs.getString("role_nama"));
                 u.setCreated_at(rs.getTimestamp("created_at"));
                 u.setUpdated_at(rs.getTimestamp("updated_at"));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,7 +89,7 @@ public class UserDAO {
     }
 
     public void softDelete(int id) throws Exception {
-        String sql = "UPDATE user SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?";
+        String sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?";
         try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -89,13 +98,14 @@ public class UserDAO {
         }
     }
 
-    public void update(Users u) throws Exception {
-        String sql = "UPDATE users SET nama = ?, password = ?, role = ? WHERE id = ?";
+    public void update(User u) throws Exception {
+        String sql = "UPDATE users SET username = ?, password = MD5(?), role_id = ? WHERE id = ?";
 
         try (Connection c = KoneksiDB.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setString(1, u.getUsername());
             ps.setString(2, u.getPassword());
-            ps.setString(3, u.getRole());
+            ps.setInt(3, u.getRole_id());
+            ps.setInt(4, u.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

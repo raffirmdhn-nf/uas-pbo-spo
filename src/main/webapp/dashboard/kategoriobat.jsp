@@ -1,4 +1,4 @@
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%@page import="java.util.List"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.KategoriObat"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.KategoriObatDAO"%>
@@ -6,7 +6,7 @@
 <%
     request.setAttribute("pageTitle", "Manajemen Kategori Obat | Dashboard");
 
-    Users user = (Users) session.getAttribute("user-session");
+    User user = (User) session.getAttribute("user-session");
     if (user == null) {
         response.sendRedirect("index.jsp?pg=login");
         return;

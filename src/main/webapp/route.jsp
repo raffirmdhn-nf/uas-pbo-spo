@@ -3,6 +3,22 @@
     String filePg = "";
     String content = "";
 
+    // ==== MIDDLEWARE AUTH ====
+    if (session.getAttribute("user-session") != null) {
+        if ("login".equals(pg) || "register".equals(pg)) {
+            response.sendRedirect("?pg=dashboard/obat");
+            return;
+        }
+    }
+    
+    if (session.getAttribute("user-session") == null) {
+        if (pg != null && pg.startsWith("dashboard")) {
+            response.sendRedirect("?pg=login&error=Silahkan login terlebih dahulu");
+            return;
+        }
+    }
+
+    // ==== NAVIGASI ====   
     if (pg == null || pg.isEmpty()) {
         filePg = "landing/index.jsp";
     } else {

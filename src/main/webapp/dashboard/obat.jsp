@@ -1,4 +1,4 @@
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%@page import="java.util.List"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.ObatDAO"%>
@@ -6,14 +6,19 @@
 <%
     request.setAttribute("pageTitle", "Manajemen Obat | Dashboard");
 
-    Users user = (Users) session.getAttribute("user-session");
+    User user = (User) session.getAttribute("user-session");
     if (user == null) {
         response.sendRedirect("index.jsp?pg=login");
         return;
     }
+    Boolean isAdmin = user.getRole_id() == 1;
 
     ObatDAO dao = new ObatDAO();
-    List<Obat> list = dao.findAll();
+    String search = request.getParameter("search");
+    search = search != null ? search : "";
+    List<Obat> list = dao.findAll(search);
+
+    String err = request.getParameter("err");
 %>
 
 <div class="app-content-header">
@@ -34,8 +39,15 @@
     <!--end::Container-->
 </div>
 
-<div class="container-fluid"
-     
+<div class="container-fluid">
+    <% if (err != null) {%>
+    <div class="alert alert-danger" role="alert">
+        <%= err%>
+    </div>
+    <% } %>
+
+
+    <% if (isAdmin) { %>
     <!-- Button Tambah -->
     <div class="d-flex justify-content-end mb-3">
         <button type="button"
@@ -45,6 +57,15 @@
             <i class="bi bi-plus-circle me-2"></i> Tambah Data
         </button>
     </div>
+    <% }%>
+
+    <form method="GET" class="d-flex" onsubmit="doSearch(event)">
+        <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Cari data..." value="<%= search%>">
+            <button class="btn btn-primary" type="submit">Cari</button>
+        </div>
+    </form>
+
 
     <!-- Tabel Data -->
     <table class="table table-bordered table-striped">
@@ -54,16 +75,19 @@
                 <th>Nama Obat</th>
                 <th>Stok</th>
                 <th>Expired Date</th>
+                    <% if (isAdmin) { %>
                 <th>Aksi</th>
+                    <% } %>
             </tr>
         </thead>
         <tbody>
-            <% for (Obat o : list) { %>
+            <% for (Obat o : list) {%>
             <tr>
-                <td><%= o.getId() %></td>
-                <td><%= o.getNama() %></td>
-                <td><%= o.getStok() %></td>
-                <td><%= o.getExpired_date() %></td>
+                <td><%= o.getId()%></td>
+                <td><%= o.getNama()%></td>
+                <td><%= o.getStok()%></td>
+                <td><%= o.getExpired_date()%></td>
+                <% if (isAdmin) {%>
                 <td>
                     <!-- Edit Data -->
                     <button type="button"
@@ -71,17 +95,17 @@
                             style="width:100px"
                             data-bs-toggle="modal"
                             data-bs-target="#modalObat"
-                            data-id="<%= o.getId() %>"
-                            data-nama="<%= o.getNama() %>"
-                            data-stok="<%= o.getStok() %>"
-                            data-expired="<%= o.getExpired_date() %>">
+                            data-id="<%= o.getId()%>"
+                            data-nama="<%= o.getNama()%>"
+                            data-stok="<%= o.getStok()%>"
+                            data-expired="<%= o.getExpired_date()%>">
                         <i class="bi bi-pencil-square me-1"></i>Edit
                     </button>
                     <!-- Hapus Data -->
                     <form method="post" action="ObatServlet"
                           style="display:inline"
                           onsubmit="return confirm('Anda yakin ingin menghapus data ini?');">
-                        <input type="hidden" name="id" value="<%= o.getId() %>">
+                        <input type="hidden" name="id" value="<%= o.getId()%>">
                         <button name="aksi" value="hapus"
                                 class="btn btn-danger btn-sm"
                                 style="width:100px">
@@ -89,8 +113,9 @@
                         </button>
                     </form>
                 </td>
+                <% } %>
             </tr>
-            <% } %>
+            <% }%>
         </tbody>
     </table>
 </div>
@@ -129,25 +154,43 @@
 </div>
 
 <script>
-const modal = document.getElementById('modalObat');
+    function doSearch(e) {
+        e.preventDefault();
 
-modal.addEventListener('show.bs.modal', function (event) {
-    const btn = event.relatedTarget;
-
-    document.getElementById('id').value = '';
-    document.getElementById('nama').value = '';
-    document.getElementById('stok').value = '';
-    document.getElementById('expired_date').value = '';
-    document.getElementById('aksi').value = 'tambah';
-    document.getElementById('modalTitle').innerText = 'Tambah Data Obat';
-
-    if (btn && btn.dataset.id) {
-        document.getElementById('id').value = btn.dataset.id;
-        document.getElementById('nama').value = btn.dataset.nama;
-        document.getElementById('stok').value = btn.dataset.stok;
-        document.getElementById('expired_date').value = btn.dataset.expired;
-        document.getElementById('aksi').value = 'edit';
-        document.getElementById('modalTitle').innerText = 'Edit Data Obat';
+        const searchValue = document.querySelector('input[name="search"]').value.trim();
+        const url = new URL(window.location.href);
+        url.searchParams.set('search', searchValue);
+        window.location.href = url.toString();
     }
-});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('input[name="search"]');
+        if (searchInput) {
+            searchInput.focus();
+        }
+    });
+    
+    const modal = document.getElementById('modalObat');
+
+    modal.addEventListener('show.bs.modal', function (event) {
+        const btn = event.relatedTarget;
+
+        document.getElementById('id').value = '';
+        document.getElementById('nama').value = '';
+        document.getElementById('stok').value = '';
+        document.getElementById('expired_date').value = '';
+        document.getElementById('aksi').value = 'tambah';
+        document.getElementById('modalTitle').innerText = 'Tambah Data Obat';
+
+        if (btn && btn.dataset.id) {
+            document.getElementById('id').value = btn.dataset.id;
+            document.getElementById('nama').value = btn.dataset.nama;
+            document.getElementById('stok').value = btn.dataset.stok;
+            document.getElementById('expired_date').value = btn.dataset.expired;
+            document.getElementById('aksi').value = 'edit';
+            document.getElementById('modalTitle').innerText = 'Edit Data Obat';
+        }
+    });
 </script>

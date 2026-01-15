@@ -6,7 +6,7 @@ package dev.enep.sms3_pbo_spo.controllers;
 
 import dev.enep.sms3_pbo_spo.dao.ObatDAO;
 import dev.enep.sms3_pbo_spo.models.Obat;
-import dev.enep.sms3_pbo_spo.models.Users;
+import dev.enep.sms3_pbo_spo.models.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -75,7 +75,7 @@ public class ManajemenObatServlet extends HttpServlet {
         ObatDAO dao = new ObatDAO();
         String aksi = request.getParameter("aksi");
 
-        Users user = (Users) request.getSession().getAttribute("user-session");
+        User user = (User) request.getSession().getAttribute("user-session");
         if (user == null) {
             response.sendRedirect("index.jsp?pg=login");
             return;
@@ -84,18 +84,17 @@ public class ManajemenObatServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             int stokLama = Integer.parseInt(request.getParameter("stok"));
-            int jumlah = Integer.parseInt(request.getParameter("jumlah"));
 
             Obat o = new Obat();
             o.setId(id);
 
             if ("tambah-stok".equalsIgnoreCase(aksi)) {
-                o.setStok(stokLama + jumlah);
+                o.setStok(stokLama + 1);
                 dao.tambahStok(o, user.getId());
             }
 
             if ("kurangi-stok".equalsIgnoreCase(aksi)) {
-                o.setStok(stokLama - jumlah);
+                o.setStok(stokLama - 1);
                 dao.kurangStok(o, user.getId());
             }
 

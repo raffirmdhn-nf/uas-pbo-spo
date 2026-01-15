@@ -1,49 +1,9 @@
-<%@page import="dev.enep.sms3_pbo_spo.models.Users"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%@page import="dev.enep.sms3_pbo_spo.dao.AutentikasiDao"%>
 
 <%
-    if ("GET".equalsIgnoreCase(request.getMethod()) && session.getAttribute("user-session") != null) {
-%>
-<script>
-    window.location.href = "?pg=dashboard/obat";
-</script>
-<%
-        return;
-    }
-
-    String errMessage = "";
-    String insUsn = "";
-    String insPw = "";
-
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        AutentikasiDao dao = new AutentikasiDao();
-        Users user = dao.login(username, password);
-        if (user != null) {
-            session.setAttribute("user-session", user); // simpan session
-
-            if ("admin".equalsIgnoreCase(user.getRole())) {
-%>
-<script>
-    window.location.href = "?pg=dashboard";
-</script>
-<%
-} else {
-%>
-<script>
-    window.location.href = "?pg=dashboard/obat";
-</script>
-<%
-            }
-            return;
-        }
-        insUsn = username;
-        insPw = password;
-        errMessage = "Invalid credentials";
-    }
-
+    String errMessage = request.getParameter("error") != null ? request.getParameter("error") : "";
+    String insUsn = request.getParameter("usn") != null ? request.getParameter("usn") : "";
 %>
 
 <!doctype html>
@@ -70,7 +30,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form method="POST">
+                            <form method="POST" action="AutentikasiServlet">
                                 <% if (!errMessage.isEmpty()) {%>
                                 <div class="alert alert-danger" role="alert">
                                     <%= errMessage%>
@@ -84,11 +44,11 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                        <input type="password" class="form-control" name="password" id="password" value="<%= insPw%>" required>
+                                        <input type="password" class="form-control" name="password" id="password" required>
                                     </div>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button class="btn btn-lg btn-primary" type="submit">Log in now</button>
+                                            <button class="btn btn-lg btn-primary" type="submit" name="aksi" value="login">Log in now</button>
                                         </div>
                                     </div>
                                 </div>

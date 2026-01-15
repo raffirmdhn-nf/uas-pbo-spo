@@ -29,19 +29,34 @@ public class ObatDAO {
             ps.setInt(2, o.getStok());
             ps.setDate(3, o.getExpired_date());
             ps.executeUpdate();
+
+            c.close();
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public List<Obat> findAll() throws Exception {
+        return findAll((String) null); // delegate to the main method
+    }
+
+    public List<Obat> findAll(String search) throws Exception {
         List<Obat> list = new ArrayList<>();
-        String sql = "SELECT obat.id, obat.nama, obat.stok, obat.expired_date, obat.created_at, obat.updated_at, obat.kategori_id, kategori.nama as kategori_nama FROM obat LEFT JOIN kategori ON obat.kategori_id = kategori.id WHERE obat.deleted_at IS NULL ORDER BY id";
+        String sql = "SELECT obat.id, obat.nama, obat.stok, obat.expired_date, obat.created_at, obat.updated_at, obat.kategori_id, kategori.nama as kategori_nama FROM obat LEFT JOIN kategori ON obat.kategori_id = kategori.id WHERE obat.deleted_at IS NULL ";
+
+        if (search != null && !search.isEmpty()) {
+            sql += " AND LOWER(obat.nama) LIKE LOWER(?) ";
+        }
+        sql += " ORDER BY id";
 
         try {
             Connection c = KoneksiDB.getConnection();
-            Statement st = c.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement ps = c.prepareStatement(sql);
+            if (search != null && !search.isEmpty()) {
+                ps.setString(1, "%" + search + "%");
+            }
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Obat o = new Obat();
@@ -55,6 +70,10 @@ public class ObatDAO {
 
                 list.add(o);
             }
+
+            c.close();
+            ps.close();
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,6 +99,10 @@ public class ObatDAO {
                 obat.setKategori_id(rs.getInt("kategori_id"));
                 obat.setKategori_nama(rs.getString("kategori_nama"));
             }
+
+            c.close();
+            ps.close();
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,7 +5,7 @@
 package dev.enep.sms3_pbo_spo.controllers;
 
 import dev.enep.sms3_pbo_spo.dao.UserDAO;
-import dev.enep.sms3_pbo_spo.models.Users;
+import dev.enep.sms3_pbo_spo.models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -71,16 +71,18 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         UserDAO dao = new UserDAO();
         String aksi = request.getParameter("aksi");
-// ===== EKSEKUSI TOMBOL HAPUS DATA =====
+
+        // ===== EKSEKUSI TOMBOL HAPUS DATA =====
         if ("hapus".equalsIgnoreCase(aksi)) {
             try {
                 dao.softDelete(Integer.parseInt(request.getParameter("id")));
-                response.sendRedirect("index.jsp?pg=dashboard/users");
+                response.sendRedirect("index.jsp?pg=dashboard/user");
             } catch (Exception ex) {
                 System.getLogger(UserServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/users&error=" + ex.getMessage());
+                response.sendRedirect("index.jsp?pg=dashboard/user&error=" + ex.getMessage());
             }
             return;
         }
@@ -88,15 +90,15 @@ public class UserServlet extends HttpServlet {
         // ===== EKSEKUSI TAMBAH DATA =====
         if ("tambah".equals(aksi)) {
             try {
-                Users u = new Users();
+                User u = new User();
                 u.setUsername(request.getParameter("username"));
                 u.setPassword(request.getParameter("password"));
-                u.setRole(request.getParameter("role"));
+                u.setRole_id(Integer.parseInt(request.getParameter("role_id")));
                 dao.insert(u);
-                response.sendRedirect("index.jsp?pg=dashboard/users");
+                response.sendRedirect("index.jsp?pg=dashboard/user");
             } catch (Exception ex) {
                 System.getLogger(UserServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/users&error=" + ex.getMessage());
+                response.sendRedirect("index.jsp?pg=dashboard/user&error=" + ex.getMessage());
             }
             return;
         }
@@ -104,21 +106,21 @@ public class UserServlet extends HttpServlet {
         // ===== EKSEKUSI TAMBAH DATA =====
         if ("edit".equals(aksi)) {
             try {
-                Users u = new Users();
+                User u = new User();
                 u.setId(Integer.parseInt(request.getParameter("id")));
                 u.setUsername(request.getParameter("username"));
                 u.setPassword(request.getParameter("password"));
-                u.setRole(request.getParameter("role"));
-                dao.insert(u);
-                response.sendRedirect("index.jsp?pg=dashboard/users");
+                u.setRole_id(Integer.parseInt(request.getParameter("role_id")));
+                dao.update(u);
+                response.sendRedirect("index.jsp?pg=dashboard/user");
             } catch (Exception ex) {
                 System.getLogger(KategoriObatServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                response.sendRedirect("index.jsp?pg=dashboard/users&error=" + ex.getMessage());
+                response.sendRedirect("index.jsp?pg=dashboard/user&error=" + ex.getMessage());
             }
             return;
         }
 
-        response.sendRedirect("index.jsp?pg=dashboard/users");
+        response.sendRedirect("index.jsp?pg=dashboard/user");
     }
 
     /**
