@@ -1,17 +1,11 @@
+<%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
+<%@page import="java.util.List"%>
+<%@page import="dev.enep.sms3_pbo_spo.dao.ObatDAO"%>
 <%@page import="dev.enep.sms3_pbo_spo.models.User"%>
 <%
-    String aksi = request.getParameter("aksi");
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        if (aksi.equals("logout")) {
-            session.invalidate();
-%>
-<script>window.location.href = "./";</script>
-<%
-            return;
-        }
-    }
     User user = (User) session.getAttribute("user-session");
-
+    ObatDAO obatDao = new ObatDAO();
+    List<Obat> listObatExpiring = obatDao.findExpiring();
 %>
 
 <!-- Navbar -->
@@ -33,29 +27,32 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
                     <i class="bi bi-bell-fill"></i>
-                    <span class="navbar-badge badge text-bg-warning">15</span>
+                    <span class="navbar-badge badge text-bg-warning"><%= listObatExpiring.size()%></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <% if (listObatExpiring.isEmpty()) { %>
+                    <span class="dropdown-item text-center text-muted">
+                        Tidak ada obat mendekati expired
+                    </span>
+                    <% } else {
+                        for (Obat o : listObatExpiring) {%>
+                    <%
+                        java.time.LocalDate today = java.time.LocalDate.now();
+                        java.time.LocalDate expDate = o.getExpired_date().toLocalDate();
+                        long sisaHari = java.time.temporal.ChronoUnit.DAYS.between(today, expDate);
+                    %>
+
+                    <div class="dropdown-item">
+                        <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                        <strong><%= o.getNama()%></strong><br>
+                        <small class="text-muted">
+                            Expired <%= sisaHari%> hari lagi
+                        </small>
+                    </div>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="bi bi-envelope me-2"></i> 4 new messages
-                        <span class="float-end text-secondary fs-7">3 mins</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="bi bi-people-fill me-2"></i> 8 friend requests
-                        <span class="float-end text-secondary fs-7">12 hours</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-                        <span class="float-end text-secondary fs-7">2 days</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">
-                        See All Notifications
-                    </a>
+                    <%   }
+                        }
+                    %>
                 </div>
             </li>
             <li class="nav-item dropdown user-menu">
@@ -63,10 +60,10 @@
                     <span class="d-none d-md-inline" style="text-transform: capitalize;"><%= user.getUsername()%></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                
+
                     <!-- Menu Footer-->
                     <li class="d-flex justify-content-between align-items-center p-2">
-                        <form method="POST" class="w-100">
+                        <form method="POST" action="AutentikasiServlet" class="w-100">
                             <button class="btn btn-default btn-flat w-100" name="aksi" value="logout">Sign out</button>
                         </form>
                     </li>

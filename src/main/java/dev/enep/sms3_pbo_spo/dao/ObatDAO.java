@@ -186,6 +186,43 @@ public class ObatDAO {
         }
     }
 
+    public List<Obat> findExpiring() throws Exception {
+        List<Obat> list = new ArrayList<>();
+        String sql = "SELECT obat.id, obat.nama, obat.stok, obat.expired_date, obat.created_at, obat.updated_at, "
+                + "obat.kategori_id, kategori.nama AS kategori_nama "
+                + "FROM obat "
+                + "LEFT JOIN kategori ON obat.kategori_id = kategori.id "
+                + "WHERE obat.deleted_at IS NULL "
+                + "AND obat.expired_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 days' "
+                + "ORDER BY obat.expired_date ASC LIMIT 5";
+
+        try {
+            Connection c = KoneksiDB.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Obat o = new Obat();
+                o.setId(rs.getInt("id"));
+                o.setNama(rs.getString("nama"));
+                o.setStok(rs.getInt("stok"));
+                o.setExpired_date(rs.getDate("expired_date"));
+                o.setUpdated_at(rs.getTimestamp("updated_at"));
+                o.setKategori_id(rs.getInt("kategori_id"));
+                o.setKategori_nama(rs.getString("kategori_nama"));
+
+                list.add(o);
+            }
+
+            c.close();
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public void soft(int parseInt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

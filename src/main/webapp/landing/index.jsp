@@ -1,4 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@page import="dev.enep.sms3_pbo_spo.dao.ObatDAO"%>
+<%@page import="dev.enep.sms3_pbo_spo.models.Obat"%>
+<%@page import="java.util.List"%>
+
+<%
+    ObatDAO obatDao = new ObatDAO();
+    List<Obat> listObat = obatDao.findAll();
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +43,8 @@
             <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
                 <a href="index.jsp" class="logo d-flex align-items-center me-auto" style="text-decoration: none;">
-    <h1 class="sitename">FarmaCare</h1>
-</a>
+                    <h1 class="sitename">FarmaCare</h1>
+                </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
@@ -324,7 +334,7 @@
             </section><!-- /Testimonials Section -->
 
             <!-- Services Section -->
-            
+
 
             <!-- Portfolio Section -->
             <section id="portfolio" class="portfolio section">
@@ -332,50 +342,49 @@
                 <!-- Section Title -->
                 <div class="container section-title" data-aos="fade-up">
                     <h2>Portfolio</h2>
-                    <p>Foto berbagai obat yang kami sediakan</p>
+                    <p>Berbagai obat yang kami sediakan</p>
                 </div><!-- End Section Title -->
 
                 <div class="container">
 
                     <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-                 
+
                         </ul><!-- End Portfolio Filters -->
 
-                        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                        <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
 
-                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                                <img src="landing/assets/img/masonry-portfolio/obat1.jpg" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>OskaPil</h4>
-                                    <p>Pil</p>
+                            <%!
+                                int max = 6;
+                                int count = 0;
+                            %>
+                            <% for (Obat o : listObat) {
+                                    if (count == max) {
+                                        break;
+                                    }
+                                    count++;
+                            %>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= o.getNama()%></h5>
+                                        <p class="card-text mb-1">
+                                            <strong>Kategori:</strong> <%= o.getKategori_nama()%>
+                                        </p>
+                                        <p class="card-text mb-1">
+                                            <strong>Stok:</strong> <%= o.getStok()%>
+                                        </p>
+                                        <p class="card-text text-muted">
+                                            Expired: <%= o.getExpired_date()%>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div><!-- End Portfolio Item -->
-
-                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                                <img src="landing/assets/img/masonry-portfolio/obat2.jpg" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>Paracetamol</h4>
-                                    <p>Pil</p>
-                                </div>
-                            </div><!-- End Portfolio Item -->
-
-                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                                <img src="landing/assets/img/masonry-portfolio/obat4.jpg" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>Obat</h4>
-                                    <p>P3K</p>
-                                </div>
-                            </div><!-- End Portfolio Item -->
-                            
+                            </div>
+                            <% }%>
                             <div class="text-center mt-4 mb-5">
-    <a href="?pg=login" class="btn btn-primary px-5 rounded shadow">Cek selengkapnya</a>
-</div>
-                                
-
-                            
-
-                        </div><!-- End Portfolio Container -->
+                                <a href="?pg=login" class="btn btn-primary px-5 rounded shadow">Cek selengkapnya</a>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -385,83 +394,332 @@
 
             <!-- Team Section --><section id="team" class="team section light-background">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Team</h2>
-        <p>Tim Pengembang Website</p>
-      </div><!-- End Section Title -->
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h2>Team</h2>
+                    <p>Tim Pengembang Website</p>
+                </div><!-- End Section Title -->
 
-      <div class="container">
+                <div class="container">
 
-        <div class="row justify-content-center">
+                    <div class="row justify-content-center">
 
-          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="landing/assets/img/team/raffi.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Raffi Ramadhan Tajudin</h4>
-                <span>0110224204</span>
-              </div>
+                        <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img src="landing/assets/img/team/raffi.jpeg" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Raffi Ramadhan Tajudin</h4>
+                                    <span>0110224204</span>
+                                </div>
+                            </div>
+                        </div><!-- End Team Member -->
+
+                        <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img src="landing/assets/img/team/rumai.jpeg" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Rumaisha</h4>
+                                    <span>0110224087</span>
+                                </div>
+                            </div>
+                        </div><!-- End Team Member -->
+
+                        <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img src="landing/assets/img/team/ikal.jpeg" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Haikal Pilar Yudhistira</h4>
+                                    <span>0110224141</span>
+                                </div>
+                            </div>
+                        </div><!-- End Team Member -->
+
+                        <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img src="landing/assets/img/team/nopal.jpeg" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Noval Putra Siregar</h4>
+                                    <span>0110224135</span>
+                                </div>
+                            </div>
+                        </div><!-- End Team Member -->
+
+                        <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                            <div class="team-member">
+                                <div class="member-img">
+                                    <img src="landing/assets/img/team/akmal.jpeg" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Akmal Maulana</h4>
+                                    <span>0110224037</span>
+                                </div>
+                            </div>
+                        </div><!-- End Team Member -->
+
+                    </div>
+
+                </div>
+
+            </section><!-- /Team Section --><!-- /Team Section -->
+
+
+
+
+            <!-- Internal CSS -->
+            <style>
+                /* Reset dasar */
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: "Poppins", sans-serif;
+                }
+
+                /* Navbar */
+                .navbar {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 20px 60px;
+                    background: white;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                }
+
+                .logo {
+                    font-size: 1.8em;
+                    font-weight: 700;
+                }
+
+                .logo span {
+                    color: #3b82f6;
+                }
+
+                .navbar nav a {
+                    margin: 0 15px;
+                    color: #333;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+
+                .navbar nav a:hover {
+                    color: #3b82f6;
+                }
+
+                .btn {
+                    background: #3b82f6;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                }
+
+                .btn:hover {
+                    background: #2563eb;
+                }
+
+                /* Blog Section */
+                .blog {
+                    text-align: center;
+                    padding: 80px 60px;
+                    background: #f9f9ff;
+                }
+
+                .blog h2 {
+                    font-size: 2em;
+                    margin-bottom: 10px;
+                    font-weight: 700;
+                }
+
+                .blog p {
+                    color: #666;
+                    margin-bottom: 40px;
+                    max-width: 700px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    line-height: 1.6;
+                }
+
+                /* Blog Cards */
+                .blog-container {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 30px;
+                }
+
+                .blog-card {
+                    background: white;
+                    width: 350px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                    overflow: hidden;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    cursor: pointer;
+                }
+
+                .blog-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                }
+
+                .blog-card img {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: cover;
+                    transition: 0.3s ease;
+                }
+
+                .blog-card:hover img {
+                    filter: brightness(0.9);
+                }
+
+                .blog-info {
+                    padding: 20px;
+                    text-align: left;
+                }
+
+                .blog-info small {
+                    display: block;
+                    color: #777;
+                    margin-bottom: 8px;
+                }
+
+                .blog-info h3 {
+                    font-size: 1.1em;
+                    margin-bottom: 10px;
+                    color: #111;
+                }
+
+                .blog-info p {
+                    color: #555;
+                    font-size: 0.95em;
+                    line-height: 1.6;
+                }
+
+                /* Popup Image (Lightbox) */
+                .popup {
+                    display: none;
+                    position: fixed;
+                    z-index: 9999; /* pastikan di atas elemen lain */
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.8);
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .popup img {
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 10px;
+                    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+                    animation: fadeIn 0.3s ease;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+
+                @media (max-width: 1024px) {
+                    .navbar {
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+
+                    .blog-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            </style>
+            <!-- Portfolio Section -->
+            <section id="blog" class="blog section">
+                <h2>Dokumentasi Sistem</h2>
+                <p>Perancangan, Implementasi, dan Fitur Utama Aplikasi</p>
+
+                <div class="blog-container">
+
+                    <!-- ERD -->
+                    <div class="blog-card" onclick="openPopup(this)">
+                        <img src="landing/assets/img/galeri/erd.png" class="img-fluid" alt="ERD Sistem">
+                        <div class="blog-info">
+                            <small>Perancangan Basis Data</small>
+                            <h3>ERD & Struktur Database</h3>
+                            <p>
+                                Diagram ERD menggambarkan relasi antar tabel seperti obat, kategori,
+                                user, dan log stok. Desain ini memastikan integritas data serta
+                                mendukung fitur manajemen dan pelacakan data secara konsisten.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Implementasi Kode -->
+                    <div class="blog-card" onclick="openPopup(this)">
+                        <img src="landing/assets/img/galeri/kode-notifikasi.png" class="img-fluid" alt="Kode Notifikasi">
+                        <div class="blog-info">
+                            <small>Implementasi Sistem</small>
+                            <h3>Logika Deteksi Expired Obat</h3>
+                            <p>
+                                Potongan kode ini menunjukkan implementasi logika untuk mendeteksi
+                                obat yang sudah atau akan kedaluwarsa. Sistem memberikan penanda
+                                visual pada tabel agar pengguna dapat dengan cepat mengidentifikasi
+                                obat yang memerlukan perhatian.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard & Notifikasi -->
+                    <div class="blog-card" onclick="openPopup(this)">
+                        <img src="landing/assets/img/galeri/dashboard+notifikasi.png" class="img-fluid" alt="Dashboard">
+                        <div class="blog-info">
+                            <small>Fitur Utama</small>
+                            <h3>Dashboard & Notifikasi</h3>
+                            <p>
+                                Dashboard menampilkan ringkasan data sistem serta grafik stok masuk
+                                dan keluar per bulan. Notifikasi di header membantu admin memantau
+                                obat yang mendekati tanggal kedaluwarsa secara real-time.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- Popup Image -->
+            <div class="popup" id="popup" onclick="closePopup()">
+                <img id="popup-img" src="" alt="Popup">
             </div>
-          </div><!-- End Team Member -->
 
-          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="landing/assets/img/team/rumai.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Rumaisha</h4>
-                <span>0110224087</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
+            <!-- Script -->
+            <script>
+                function openPopup(element) {
+                    const imgSrc = element.querySelector("img").src;
+                    document.getElementById("popup-img").src = imgSrc;
+                    document.getElementById("popup").style.display = "flex";
+                }
 
-          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="landing/assets/img/team/ikal.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Haikal Pilar Yudhistira</h4>
-                <span>0110224141</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
+                function closePopup() {
+                    document.getElementById("popup").style.display = "none";
+                }
+            </script>
 
-          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="landing/assets/img/team/nopal.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Noval Putra Siregar</h4>
-                <span>0110224135</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-          
-          <div class="col-lg-2 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="landing/assets/img/team/akmal.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <h4>Akmal Maulana</h4>
-                <span>0110224037</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Team Section --><!-- /Team Section -->
-
-            
+            <!-- /Portfolio Section -->
 
             <!-- Faq Section -->
             <section id="faq" class="faq section light-background">
@@ -472,7 +730,7 @@
                     <p>Temukan informasi penting mengenai panduan penggunaan obat dan layanan kesehatan kami di bawah ini.</p>
                 </div><!-- End Section Title -->
 
-                
+
                 <div class="container">
 
                     <div class="row justify-content-center">
@@ -511,415 +769,187 @@
                 </div>
 
             </section><!-- /Faq Section -->
-<script>
-  // Mengambil semua elemen FAQ
-  const faqItems = document.querySelectorAll('.faq-item');
+            <script>
+                // Mengambil semua elemen FAQ
+                const faqItems = document.querySelectorAll('.faq-item');
 
-  faqItems.forEach(item => {
-    // Mencari judul (h3) dan tombol toggle (i) di dalam setiap item
-    const header = item.querySelector('h3');
-    const toggle = item.querySelector('.faq-toggle');
+                faqItems.forEach(item => {
+                    // Mencari judul (h3) dan tombol toggle (i) di dalam setiap item
+                    const header = item.querySelector('h3');
+                    const toggle = item.querySelector('.faq-toggle');
 
-    // Fungsi untuk buka-tutup
-    const toggleFaq = () => {
-      // Hapus class 'faq-active' dari item lain jika ingin hanya satu yang terbuka (opsional)
-      // faqItems.forEach(otherItem => {
-      //   if (otherItem !== item) otherItem.classList.remove('faq-active');
-      // });
+                    // Fungsi untuk buka-tutup
+                    const toggleFaq = () => {
+                        // Hapus class 'faq-active' dari item lain jika ingin hanya satu yang terbuka (opsional)
+                        // faqItems.forEach(otherItem => {
+                        //   if (otherItem !== item) otherItem.classList.remove('faq-active');
+                        // });
 
-      // Tambah atau hapus class 'faq-active' pada item yang diklik
-      item.classList.toggle('faq-active');
-    };
+                        // Tambah atau hapus class 'faq-active' pada item yang diklik
+                        item.classList.toggle('faq-active');
+                    };
 
-    // Jalankan fungsi saat judul atau tombol diklik
-    header.addEventListener('click', toggleFaq);
-    toggle.addEventListener('click', toggleFaq);
-  });
-</script>
+                    // Jalankan fungsi saat judul atau tombol diklik
+                    header.addEventListener('click', toggleFaq);
+                    toggle.addEventListener('click', toggleFaq);
+                });
+            </script>
 
-<style>
-  /* Tambahan CSS agar kursor berubah jadi jari saat diarahkan ke judul */
-  .faq-item h3, .faq-toggle {
-    cursor: pointer;
-  }
-  
-  /* Pastikan konten tersembunyi jika tidak ada class faq-active */
-  .faq-item .faq-content {
-    display: none;
-  }
-  
-  /* Tampilkan konten jika ada class faq-active */
-  .faq-item.faq-active .faq-content {
-    display: block;
-  }
+            <style>
+                /* Tambahan CSS agar kursor berubah jadi jari saat diarahkan ke judul */
+                .faq-item h3, .faq-toggle {
+                    cursor: pointer;
+                }
 
-  /* Animasi putar ikon chevron (>) saat aktif */
-  .faq-item.faq-active .faq-toggle {
-    transform: rotate(90deg);
-    transition: 0.3s;
-  }
-</style>
-                                
+                /* Pastikan konten tersembunyi jika tidak ada class faq-active */
+                .faq-item .faq-content {
+                    display: none;
+                }
 
-                            </div>
+                /* Tampilkan konten jika ada class faq-active */
+                .faq-item.faq-active .faq-content {
+                    display: block;
+                }
 
-                        </div><!-- End Faq Column-->
-
-                    </div>
-
-                </div>
-
-            </section><!-- /Faq Section -->
-
-            <!-- Internal CSS -->
-    <style>
-        /* Reset dasar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .logo span {
-            color: #3b82f6;
-        }
-
-        .navbar nav a {
-            margin: 0 15px;
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .navbar nav a:hover {
-            color: #3b82f6;
-        }
-
-        .btn {
-            background: #3b82f6;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-        }
-
-        /* Blog Section */
-        .blog {
-            text-align: center;
-            padding: 80px 60px;
-            background: #f9f9ff;
-        }
-
-        .blog h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .blog p {
-            color: #666;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        /* Blog Cards */
-        .blog-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .blog-card {
-            background: white;
-            width: 350px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .blog-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: 0.3s ease;
-        }
-
-        .blog-card:hover img {
-            filter: brightness(0.9);
-        }
-
-        .blog-info {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .blog-info small {
-            display: block;
-            color: #777;
-            margin-bottom: 8px;
-        }
-
-        .blog-info h3 {
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            color: #111;
-        }
-
-        .blog-info p {
-            color: #555;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        /* Popup Image (Lightbox) */
-        .popup {
-  display: none;
-  position: fixed;
-  z-index: 9999; /* pastikan di atas elemen lain */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.popup img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+                /* Animasi putar ikon chevron (>) saat aktif */
+                .faq-item.faq-active .faq-toggle {
+                    transform: rotate(90deg);
+                    transition: 0.3s;
+                }
+            </style>
 
 
-        @media (max-width: 1024px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .blog-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
-            <!-- Portfolio Section -->
-            <section id="blog" class="blog section">
-        <h2>Galeri</h2>
-        <p>Dokumentasi</p>
-
-        <div class="blog-container">
-            <!-- Blog 1 -->
-            <div class="blog-card" onclick="openPopup(this)">
-                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
-                <div class="blog-info">
-                    <small>LOREM</small>
-                    <h3>LOREM</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                </div>
-            </div>
-
-            <!-- Blog 2 -->
-            <div class="blog-card" onclick="openPopup(this)">
-                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
-                <div class="blog-info">
-                    <small>LOREM</small>
-                    <h3>LOREM</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                </div>
-            </div>
-
-            <!-- Blog 3 -->
-            <div class="blog-card" onclick="openPopup(this)">
-                <img src="landing/assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
-                <div class="blog-info">
-                    <small>LOREM</small>
-                    <h3>LOREM</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                </div>
-            </div>
         </div>
-    </section>
-            <!-- Popup Image -->
-<div class="popup" id="popup" onclick="closePopup()">
-  <img id="popup-img" src="" alt="Popup">
+
+    </div><!-- End Faq Column-->
+
 </div>
 
-<!-- Script -->
-<script>
-  function openPopup(element) {
-    const imgSrc = element.querySelector("img").src;
-    document.getElementById("popup-img").src = imgSrc;
-    document.getElementById("popup").style.display = "flex";
-  }
+</div>
 
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-</script>
+</section><!-- /Faq Section -->
 
-            <!-- /Portfolio Section -->
-            
-            <!-- Contact Section -->
-            <section id="contact" class="contact section">
 
-                <!-- Section Title -->
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>Kontak</h2>
-                    <p>Pelayanan kami hingga 24 jam kami sangat berkenan jika ada berkebutuhan mungkin dapat kami hubungi</p>
-                </div><!-- End Section Title -->
+<!-- Contact Section -->
+<section id="contact" class="contact section">
 
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Kontak</h2>
+        <p>Pelayanan kami hingga 24 jam kami sangat berkenan jika ada berkebutuhan mungkin dapat kami hubungi</p>
+    </div><!-- End Section Title -->
 
-                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <iframe style="border:0; width: 100%; height: 270px;"  src="https://www.google.com/maps/d/embed?mid=1soqvLoYGu575omHL8EY4mBYQrp6-Rtk&ehbc=2E312F" width="640" height="480" width="640" height="480" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div><!-- End Google Maps -->
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                    <div class="row gy-4">
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+            <iframe style="border:0; width: 100%; height: 270px;"  src="https://www.google.com/maps/d/embed?mid=1soqvLoYGu575omHL8EY4mBYQrp6-Rtk&ehbc=2E312F" width="640" height="480" width="640" height="480" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div><!-- End Google Maps -->
 
-                        <div class="col-lg-4">
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                                <div>
-                                    <h3>Alamat</h3>
-                                    <p>Jalan Raya Lenteng Agung No. 20-21, Jakarta Selatan</p>
-                                </div>
-                            </div><!-- End Info Item -->
+        <div class="row gy-4">
 
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                                <i class="bi bi-telephone flex-shrink-0"></i>
-                                <div>
-                                    <h3>Hubungi kami</h3>
-                                    <p>+62 887-2311-4456</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                                <i class="bi bi-envelope flex-shrink-0"></i>
-                                <div>
-                                    <h3>Email kami</h3>
-                                    <p>healthcare@gmail.com</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                        </div>
-
-                        <div class="col-lg-8">
-                            <form action="forms/?pg=login" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                                <div class="row gy-4">
-
-                                    <div class="col-md-6">
-                                        <input type="text" name="name" class="form-control" placeholder="Nama" required="">
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="subject" placeholder="Alamat" required="">
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
-                                    </div>
-
-                                    <div class="col-md-12 text-center">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                        <button type="submit">Send Message</button>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div><!-- End Contact Form -->
-
+            <div class="col-lg-4">
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <i class="bi bi-geo-alt flex-shrink-0"></i>
+                    <div>
+                        <h3>Alamat</h3>
+                        <p>Jalan Raya Lenteng Agung No. 20-21, Jakarta Selatan</p>
                     </div>
+                </div><!-- End Info Item -->
 
-                </div>
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                    <i class="bi bi-telephone flex-shrink-0"></i>
+                    <div>
+                        <h3>Hubungi kami</h3>
+                        <p>+62 887-2311-4456</p>
+                    </div>
+                </div><!-- End Info Item -->
 
-            </section><!-- /Contact Section -->
+                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                    <i class="bi bi-envelope flex-shrink-0"></i>
+                    <div>
+                        <h3>Email kami</h3>
+                        <p>healthcare@gmail.com</p>
+                    </div>
+                </div><!-- End Info Item -->
 
-        </main>
-
-        <footer id="footer" class="footer light-background">
-
-            
-
-            <div class="container copyright text-center mt-4">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">FarmaCare</strong> <span>All Rights Reserved</span></p>
-                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you've purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                    
-                </div>
             </div>
 
-        </footer>
+            <div class="col-lg-8">
+                <form action="forms/?pg=login" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
 
-        <!-- Scroll Top -->
-        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+                        <div class="col-md-6">
+                            <input type="text" name="name" class="form-control" placeholder="Nama" required="">
+                        </div>
 
-        <!-- Preloader -->
-        <div id="preloader"></div>
+                        <div class="col-md-6 ">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                        </div>
 
-        <!-- Vendor JS Files -->
-        <script src="landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="landing/assets/vendor/php-email-form/validate.js"></script>
-        <script src="landing/assets/vendor/aos/aos.js"></script>
-        <script src="landing/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="landing/assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="landing/assets/vendor/swiper/swiper-bundle.min.js"></script>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="subject" placeholder="Alamat" required="">
+                        </div>
 
-        <script src="landing/assets/js/main.js"></script>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
+                        </div>
 
-        <!-- Main JS File -->
-        <script src="assets/js/main.js"></script>
+                        <div class="col-md-12 text-center">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
 
-    </body>
+                            <button type="submit">Send Message</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div><!-- End Contact Form -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->
+
+</main>
+
+<footer id="footer" class="footer light-background">
+
+
+
+    <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">FarmaCare</strong> <span>All Rights Reserved</span></p>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you've purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+
+        </div>
+    </div>
+
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="landing/assets/vendor/php-email-form/validate.js"></script>
+<script src="landing/assets/vendor/aos/aos.js"></script>
+<script src="landing/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="landing/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="landing/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<script src="landing/assets/js/main.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
 
 </html>

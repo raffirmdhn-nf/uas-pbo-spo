@@ -82,7 +82,23 @@
         </thead>
         <tbody>
             <% for (Obat o : list) {%>
-            <tr>
+            <%
+                java.time.LocalDate today = java.time.LocalDate.now();
+                java.time.LocalDate exp = o.getExpired_date().toLocalDate();
+                boolean isExpired = exp.isBefore(today) || exp.isEqual(today);
+                long sisaHari = java.time.temporal.ChronoUnit.DAYS.between(today, exp);
+                String rowClass = "";
+                String rowTitle = "";
+
+                if (sisaHari <= 0) {
+                    rowClass = "table-danger";
+                    rowTitle = "Obat Sudah Expired";
+                } else if (sisaHari <= 7) {
+                    rowClass = "table-warning";
+                    rowTitle = "Obat Akan Expire";
+                }
+            %>
+            <tr class="<%= rowClass%>" title="<%= rowTitle%>">
                 <td><%= o.getId()%></td>
                 <td><%= o.getNama()%></td>
                 <td><%= o.getStok()%></td>
@@ -171,7 +187,7 @@
             searchInput.focus();
         }
     });
-    
+
     const modal = document.getElementById('modalObat');
 
     modal.addEventListener('show.bs.modal', function (event) {

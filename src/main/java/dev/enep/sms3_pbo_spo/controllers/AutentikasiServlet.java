@@ -138,6 +138,19 @@ public class AutentikasiServlet extends HttpServlet {
             }
         }
 
+        // ======= LOGOUT =======
+        if ("logout".equalsIgnoreCase(aksi)) {
+            try {
+                HttpSession session = request.getSession(true);
+                session.invalidate();
+                response.sendRedirect(
+                        "index.jsp");
+                return;
+            } catch (Exception ex) {
+                System.getLogger(AutentikasiServlet.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                return;
+            }
+        }
     }
 
     /**
