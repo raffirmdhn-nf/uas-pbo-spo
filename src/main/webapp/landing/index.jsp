@@ -354,7 +354,7 @@
 
                         <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
 
-                            <%!
+                            <%
                                 int max = 6;
                                 int count = 0;
                             %>
